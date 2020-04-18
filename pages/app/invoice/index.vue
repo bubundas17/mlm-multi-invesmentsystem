@@ -1,7 +1,7 @@
 <template>
   <v-layout column wrap>
       <v-card class="ma-2">
-        <v-card-title class="secondary white--text">Invoices</v-card-title>
+        <v-card-title class="secondary white--text">Transection History</v-card-title>
         <v-list two-line>
           <v-list-item v-for="invoice in invoices" :key="invoice._id">
             <v-list-item-content>
