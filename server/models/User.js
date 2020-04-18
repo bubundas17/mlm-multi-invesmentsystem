@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-
+let config = require("../config");
 let Schema = mongoose.Schema({
   username: {type: String, unique: true, index: 1},
   email: {type: String, index: 1},
@@ -12,7 +12,7 @@ let Schema = mongoose.Schema({
 
   admin: {type: Boolean, default: false},
   created: {type: Date, default: Date.now},
-  balance: {type: Number, default: 0},
+  balance: {type: Number, default: config.newUserBonus},
   emailVerified: {type: Boolean, default: false},
   kycVerified: {type: Boolean, default: false},
   banned: {type: Boolean, default: false},

@@ -81,7 +81,9 @@
         if (this.$refs.profileinfo.validate()) {
           try {
             await this.$axios.$post("/profile", this.user);
-            this.showAlert("success", "Profile Info Changes!")
+            this.showAlert("success", "Profile Info Changes!");
+            this.$store.dispatch("refreshUser")
+
           } catch (e) {
             this.showAlert("error", "Error In changing Profile info!")
           }

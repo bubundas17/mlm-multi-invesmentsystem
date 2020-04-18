@@ -35,7 +35,7 @@
         this.$axios.$post("/wallet/send", {username: this.username, amount: this.amount})
           .then(data => {
             console.log(data)
-            this.showAlert("success", "Coins Sent!")
+            this.showAlert("success", "Coins Sent!");
             this.$store.dispatch("refreshUser");
             this.voucher = ""
           }).catch(err => {

@@ -51,13 +51,13 @@
     methods: {
       async accept(){
         await this.$axios.$post(`/kyc/${this.$route.params.id}/accept`);
-        this.showAlert("success", "Set As Verified!")
-        this.router.push("/app/kyc-req");
+        this.showAlert("success", "Set As Verified!");
+        this.$router.push("/app/kyc-req/pending");
       },
       async reject(){
         await this.$axios.$post(`/kyc/${this.$route.params.id}/reject`);
-        this.showAlert("info", "Set As Rejected!")
-        this.router.push("/app/kyc-req");
+        this.showAlert("info", "Set As Rejected!");
+        this.$router.push("/app/kyc-req/pending");
       }
     }
   }
