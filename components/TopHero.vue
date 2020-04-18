@@ -4,7 +4,7 @@
     <v-container class="hero-container main-container">
       <v-layout d-flex row wrap align-center="" justify-center="">
         <div class="text-center">
-          <span class="display-1 white--text">EasyConfig</span> <br>
+          <span class="display-1 white--text">AmpleCoin</span> <br>
           <span class="white--text">Welcome To AMPLECOIN</span>
         </div>
       </v-layout>
