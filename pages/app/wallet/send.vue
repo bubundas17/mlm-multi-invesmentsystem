@@ -1,7 +1,7 @@
 <template>
   <v-layout column wrap>
     <v-card class="ma-2">
-      <v-card-title class="secondary white--text">Send Ampple Coins</v-card-title>
+      <v-card-title class="secondary white--text">Send Ample Coins</v-card-title>
       <v-card-text>
         <v-text-field  v-model="username" label="Username"/>
         <v-text-field  v-model="amount" label="Amount">
