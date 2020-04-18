@@ -8,7 +8,7 @@
         </p>
         <v-list>
           <v-list-item>
-            Support Email: easyconfig@protonmail.com
+            Support Email: support@amplecoin.com
           </v-list-item>
         </v-list>
       </v-card-text>
