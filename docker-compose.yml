@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  web:
+    build: .
+#    ports:
+#      - "80:3000"
+    environment:
+      - JWT_SECRET="askjdas asld hlauiawlasu has jklasd j "
+      - SESSION_SECRET="hjka sjk asd f ghjas  ghja hjksd"
+      - MONGO_DB_URI=mongodb://db/easycfg
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.easyconfighttp.rule=Host(`easyconfig.net`)"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.easyconfighttp.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.easyconfig.rule=Host(`easyconfig.net`)"
+      - "traefik.http.routers.easyconfig.entrypoints=websecure"
+      - "traefik.http.routers.easyconfig.tls.certresolver=lehttp"
+      - "traefik.http.routers.easyconfig.tls=true"
+      - "traefik.docker.network=gateway"
+    links:
+      - db
+    networks:
+      - backend
+      - gateway
+  db:
+    image: mongo:bionic
+    volumes:
+      - ./mongodb:/data/db
+    networks:
+      - backend
+
+networks:
+  backend:
+  gateway:
+    external:
+      name: gateway

@@ -1,0 +1,10 @@
+<%- include('inc/header') %>
+<div>
+    <h1>Email Verification</h1>
+    <p>Welcome To Ampple Coin</p>
+    <p>Use the following link to verify your account.</p>
+    <a href="<%= siteUrl %>/api/v1/profile/verify?token=<%= token %>">Click Here To Verify Email</a>
+    <p>Or if you cannot click on the link, please copy/paste the following link in browser.</p>
+    <%= siteUrl %>/api/v1/profile/verify?token=<%= token %>
+</div>
+<%- include('inc/footer') %>
