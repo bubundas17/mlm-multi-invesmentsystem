@@ -89,7 +89,8 @@
               this.$store.dispatch("login", {username: this.username, password: this.password})
             }, 1000)
           } catch (e) {
-            this.showAlert("error", "Email / Username Is already in use");
+
+            this.showAlert("error", e.response.data.message);
           }
           this.loading = false;
         }
