@@ -18,7 +18,7 @@ router.post("/signup", async (req, res) => {
   if (!password) return res.status(400).json({message: "Please Enter Password"});
   if (!phone) return res.status(400).json({message: "Please Enter Phone Number"});
 
-  let referUser = {};
+  let referUser = null;
 
   if(refer) {
     referUser = await User.findOne({username: refer});
