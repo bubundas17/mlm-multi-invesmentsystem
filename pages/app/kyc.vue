@@ -57,8 +57,8 @@
               console.log({ error });
             });
           this.loading = false;
-          this.showAlert("success", "KYC Submitted");
-          this.$router.go(-1);
+          this.showAlert("success", "KYC Submitted. Now Please wait for approval");
+          this.$router.push("/app");
         } else {
           this.showAlert("error", "Please Select A file")
         }

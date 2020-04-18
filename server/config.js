@@ -1,6 +1,6 @@
 require('dotenv').config();
 module.exports = {
-  siteUrl: "http://localhost:3000",
+  siteUrl: "https://test.amplecoin.in",
   db: {
     uri: process.env.MONGO_DB_URI || 'mongodb://localhost/ampplecoin'
   },

@@ -5,6 +5,8 @@ const authenticated = require('../../controllers/authenticated');
 const config = require("../../config");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
 
 router.get("/", authenticated, async (req, res) => {
   let user = await User.findById(req.user._id);
@@ -48,10 +50,39 @@ router.get("/verify", async (req, res) => {
 });
 
 
-router.post("/", authenticated, (req, res) => {
+router.post("/", authenticated, async (req, res) => {
   let name = req.body.name;
   let email = req.body.email;
+  let phone = req.body.phone;
 
+  try {
+    await User.findByIdAndUpdate(req.user._id, {$set: {name, email, phone}});
+    res.send({message: "OK"})
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({message: "Error"})
+  }
+
+});
+
+router.post("/change-pass", authenticated, async (req, res) => {
+  let oldpass = req.body.oldpass;
+  let newpass = req.body.newpass;
+  let userData = await User.findById(req.user._id);
+
+  if (userData && bcrypt.compareSync(String(oldpass), userData.password)) {
+    let hashedpass = bcrypt.hashSync(newpass, 10);
+    try {
+      await User.findByIdAndUpdate(req.user._id, {$set: { password: hashedpass }});
+      res.send({message: "OK"})
+    } catch (e) {
+      console.log(e)
+      res.status(401).send({message: "Unauthorized"})
+    }
+
+  } else {
+    res.status(401).send({message: "Unauthorized"})
+  }
 
 });
 
