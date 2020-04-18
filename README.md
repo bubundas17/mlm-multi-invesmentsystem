@@ -1,6 +1,6 @@
 # ampplecoin
 
-> EasyConfig Licanse System
+> ampplecoin wallet
 
 ## Build Setup
 
