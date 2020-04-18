@@ -1,4 +1,4 @@
-# easyconfig-frontend
+# ampplecoin
 
 > EasyConfig Licanse System
 
