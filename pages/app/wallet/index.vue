@@ -4,7 +4,7 @@
       <v-card-title class="secondary white--text">Wallet</v-card-title>
       <v-list>
         <v-list-item>
-          Wallet Balance: ${{ user.balance }}
+          Wallet Balance: {{ user.balance }} APC
         </v-list-item>
       </v-list>
     </v-card>
