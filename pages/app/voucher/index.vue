@@ -4,7 +4,7 @@
       <v-card-title class="secondary white--text" >Create Vouchers</v-card-title>
       <v-card-text>
         <p class="body-1 mt-2">Create A Vouchers</p>
-        <v-text-field label="Enter Amount in USD" type="number" v-model="amount"/>
+        <v-text-field label="Enter Amount in AmpleCOIN" type="number" v-model="amount"/>
       </v-card-text>
       <v-card-actions>
         <v-btn block dark class="primary" :loading="createVoucherLoading" @click="createVoucher">Create</v-btn>
