@@ -5,7 +5,7 @@
       <v-layout d-flex row wrap align-center="" justify-center="">
         <div class="text-center">
           <span class="display-1 white--text">EasyConfig</span> <br>
-          <span class="white--text">Easily Configure Your Server</span>
+          <span class="white--text">Welcome To AMPLECOIN</span>
         </div>
       </v-layout>
     </v-container>
