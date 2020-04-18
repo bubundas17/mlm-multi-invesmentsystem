@@ -105,8 +105,8 @@
     },
     watch: {
       isLoggedIn(val) {
-        if (val) {
-          this.$router.go(-1)
+        if(val){
+          this.$router.push("/app")
         }
       }
     },
