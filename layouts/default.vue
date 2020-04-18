@@ -40,7 +40,7 @@
       <nuxt/>
     </v-content>
     <v-footer class="grey lighten-3" app>
-      <span class="px-2">easyconfig.net &copy;2020</span>
+      <span class="px-2">amplecoin.in &copy;2020</span>
 <!--      <v-spacer/>-->
 <!--      <nuxt-link to="/about" :class="darkMode ? 'white&#45;&#45;text': ''" class="px-2">About Us</nuxt-link>-->
 <!--      |-->
