@@ -16,7 +16,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn class="primary" @click="submit">Submit</v-btn>
+          <v-btn class="primary" @click="submit" :loading="loading">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -31,21 +31,23 @@
     data(){
 
       return {
-        files: null
+        files: null,
+        loading: false
       }
     },
 
     methods: {
-      submit(){
+      async submit(){
         if(!process.browser) return;
 
         if (this.files) {
+          this.loading = true;
           let formData = new FormData();
 
           // files
             formData.append("image", this.files, this.files);
 
-          this.$axios
+          await this.$axios
             .post("/kyc/submit-kyc", formData)
             .then(response => {
               console.log("Success!");
@@ -54,6 +56,9 @@
             .catch(error => {
               console.log({ error });
             });
+          this.loading = false;
+          this.showAlert("success", "KYC Submitted");
+          this.$router.go(-1);
         } else {
           this.showAlert("error", "Please Select A file")
         }
