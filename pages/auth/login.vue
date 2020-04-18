@@ -9,7 +9,7 @@
           <v-form>
             <v-text-field placeholder="Username" prepend-icon="mdi-account-circle" name="username" v-model="username">
             </v-text-field>
-            <v-text-field placeholder="Password" prepend-icon="mdi-textbox-password" name="password" type="password" v-model="password"/>
+            <v-text-field placeholder="Password" prepend-icon="mdi-form-textbox-password" name="password" type="password" v-model="password"/>
           </v-form>
         </v-card-text>
         <v-card-actions>

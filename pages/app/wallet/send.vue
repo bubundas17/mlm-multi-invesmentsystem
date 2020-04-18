@@ -11,7 +11,7 @@
         </v-text-field>
       </v-card-text>
       <v-card-actions>
-        <v-btn block class="primary" @loading="loading" @click="send">Send Now</v-btn>
+        <v-btn block class="primary" @loading="loading" @click="send" :disabled="!user.kycVerified">Send Now</v-btn>
       </v-card-actions>
     </v-card>
   </v-layout>
