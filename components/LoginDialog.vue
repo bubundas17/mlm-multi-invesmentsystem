@@ -1,5 +1,5 @@
 <template>
-  <v-menu :close-on-content-click="false" open-on-hover bottom offset-y>
+  <v-menu :close-on-content-click="true" open-on-hover bottom offset-y>
     <template v-slot:activator="{ on }">
       <v-btn v-on="on" text>
         <v-icon left>mdi-account-circle</v-icon>

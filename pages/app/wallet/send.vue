@@ -6,7 +6,7 @@
         <v-text-field  v-model="username" label="Username"/>
         <v-text-field  v-model="amount" label="Amount">
           <template slot="append-outer">
-            APC
+            AMP
           </template>
         </v-text-field>
       </v-card-text>

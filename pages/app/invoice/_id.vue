@@ -9,7 +9,7 @@
       <v-list>
         <v-divider/>
         <v-list-item>
-        Total: {{ invoice.finalAmount }} APC
+        Total: {{ invoice.finalAmount }} AMP
       </v-list-item>
         <v-divider/>
         <v-list-item>

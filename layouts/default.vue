@@ -18,8 +18,8 @@
     </v-navigation-drawer>
 
     <v-app-bar fixed app dark color="primary">
-      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up"/>
-      <img :src="require('../assets/images/logo.svg')" style="max-height: 60%">
+<!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up"/>-->
+      <img :src="require('../assets/images/logo.png')" style="max-height: 60%">
       <v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
       <v-spacer/>
       <v-spacer/>
@@ -70,7 +70,7 @@
                 miniVariant: false,
                 right: true,
                 rightDrawer: false,
-                title: "AmppleCoin"
+                title: "AmpleCoin"
             };
         },
         methods: {

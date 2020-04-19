@@ -47,7 +47,7 @@
 
     <v-app-bar fixed app dark color="primary">
       <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-lg-and-up"/>
-      <img :src="require('../assets/images/logo.svg')" style="max-height: 60%">
+      <img :src="require('../assets/images/logo.png')" style="max-height: 60%">
       <v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
       <v-spacer/>
       <v-toolbar-items></v-toolbar-items>
@@ -61,7 +61,7 @@
       </v-toolbar-items>
       <v-toolbar-items>
         <v-btn text>
-          <v-icon left>mdi-wallet</v-icon> {{ Number(balance).toFixed(0) }} APC
+          <v-icon left>mdi-wallet</v-icon> {{ Number(balance).toFixed(0) }} AMP
         </v-btn>
         <v-btn icon>
           <v-icon>mdi-bell</v-icon>

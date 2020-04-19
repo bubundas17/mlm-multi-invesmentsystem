@@ -33,7 +33,7 @@
     <v-flex xs12 sm12 md6>
       <v-card class="ma-2 teal">
         <v-responsive aspect-ratio="2.5" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">Wallet: {{ Number(user.balance).toFixed(2) }} APC</div>
+          <div class="display-1 white--text text-center">Wallet: {{ Number(user.balance).toFixed(2) }} AMP</div>
         </v-responsive>
       </v-card>
     </v-flex>

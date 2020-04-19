@@ -8,7 +8,7 @@
               <v-list-item-title>
                 {{ invoice.title }}
               </v-list-item-title>
-              <v-list-item-subtitle>{{ invoice.finalAmount }} APC  {{ invoice.txnType }} | {{ formatData(invoice.date) }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ invoice.finalAmount }} AMP  {{ invoice.txnType }} | {{ formatData(invoice.date) }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
               <v-btn icon :to="`/app/invoice/${invoice._id}`"><v-icon>mdi-eye</v-icon></v-btn>

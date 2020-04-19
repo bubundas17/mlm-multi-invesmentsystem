@@ -22,12 +22,13 @@ router.post("/send", async (req, res) => {
   let amount = req.body.amount;
   if (!username) return res.status(500).send({message: "Enter A username"});
   if (!amount) return res.status(500).send({message: "Enter A amount"});
-
-  if(!req.user.kycVerified) return res.status(500).send({message: "Please Verify KYC First"});
+  // console.log(req.user)
+  //
+  // console.log(req.user)
 
   let user = await UserDB.findById(req.user._id);
   let RecUser = await UserDB.findOne({username: username});
-
+  if(!user.kycVerified) return res.status(500).send({message: "Please Verify KYC First"});
   if (!RecUser) return res.status(500).send({message: "User Not Found!"});
   if (Number(user.balance) < Number(amount)) return res.status(500).send({message: "Not enough balance!"});
 
