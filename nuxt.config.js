@@ -81,7 +81,7 @@ module.exports = {
           success: colors.green.accent3
         },
         light: {
-          primary: colors.teal.base,
+          primary: "#1c3146",
           secondary: colors.red.base,
           accent: colors.blue.base,
           error: colors.deepOrange.base,

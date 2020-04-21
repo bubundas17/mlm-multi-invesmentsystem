@@ -10,7 +10,8 @@
             Upload your Aadhaar card for KYC Verification.
           </p>
           <no-ssr>
-            <v-file-input accept="image/*" label="File input" v-model="files" counter show-size></v-file-input>
+            <v-file-input accept="image/*" label="Aadhar Card Font page" v-model="file1" counter show-size></v-file-input>
+            <v-file-input accept="image/*" label="Aadhar Card Back page" v-model="file2" counter show-size></v-file-input>
           </no-ssr>
           Files Supported: jpg, png. MAX file size: 5MB
         </v-card-text>
@@ -31,7 +32,8 @@
     data(){
 
       return {
-        files: null,
+        file1: null,
+        file2: null,
         loading: false
       }
     },
@@ -40,12 +42,13 @@
       async submit(){
         if(!process.browser) return;
 
-        if (this.files) {
+        if (this.file1 && this.file2) {
           this.loading = true;
           let formData = new FormData();
 
           // files
-            formData.append("image", this.files, this.files);
+            formData.append("image", this.file1, this.file1);
+            formData.append("image", this.file2, this.file2);
 
           await this.$axios
             .post("/kyc/submit-kyc", formData)
@@ -60,7 +63,7 @@
           this.showAlert("success", "KYC Submitted. Now Please wait for approval");
           this.$router.push("/app");
         } else {
-          this.showAlert("error", "Please Select A file")
+          this.showAlert("error", "You need to select Both Files.")
         }
       }
     }

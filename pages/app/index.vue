@@ -43,16 +43,7 @@
         <v-card-title class="secondary white--text">NEWS</v-card-title>
         <v-list>
           <v-list-item>
-            cPanel VPS License Added!
-          </v-list-item>
-          <v-list-item>
-            WHMReseller License Added!
-          </v-list-item>
-          <v-list-item>
-            Softaculous License Added!
-          </v-list-item>
-          <v-list-item>
-            CloudLinux License Added!
+            AmpleCoin.in Lunch.
           </v-list-item>
         </v-list>
       </v-card>

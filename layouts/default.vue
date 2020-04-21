@@ -18,7 +18,7 @@
     </v-navigation-drawer>
 
     <v-app-bar fixed app dark color="primary">
-<!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up"/>-->
+      <!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up"/>-->
       <img :src="require('../assets/images/logo.png')" style="max-height: 60%">
       <v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
       <v-spacer/>
@@ -39,49 +39,88 @@
       <alerts></alerts>
       <nuxt/>
     </v-content>
-    <v-footer class="grey lighten-3" app>
-      <span class="px-2">amplecoin.in &copy;2020</span>
-<!--      <v-spacer/>-->
-<!--      <nuxt-link to="/about" :class="darkMode ? 'white&#45;&#45;text': ''" class="px-2">About Us</nuxt-link>-->
-<!--      |-->
-<!--      <nuxt-link to="/donate" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">Donate</nuxt-link>-->
-<!--      |-->
-<!--      <nuxt-link to="/dmca" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">DMCA</nuxt-link>-->
-<!--      |-->
-<!--      <nuxt-link class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''" to="/privacy">Privacy Policy</nuxt-link>-->
+    <v-footer
+      color="primary lighten-1"
+      padless
+    >
+      <v-row
+        justify="center"
+        no-gutters
+      >
+        <v-btn
+          color="white"
+          text
+          rounded
+          class="my-2"
+          to="/auth/login"
+        >
+          Login
+        </v-btn>
+
+        <v-btn
+          color="white"
+          text
+          rounded
+          to="/auth/signup"
+          class="my-2"
+        >
+          Signup
+        </v-btn>
+        <v-btn
+          color="white"
+          text
+          rounded
+          class="my-2"
+          to="/privacy"
+        >
+          Privacy Policy
+        </v-btn>
+        <v-btn
+          color="white"
+          text
+          rounded
+          to="/terms"
+          class="my-2"
+        >
+          Trams And Condition
+        </v-btn>
+        <v-col
+          class="primary lighten-2 py-4 text-center white--text"
+          cols="12"
+        >
+          {{ new Date().getFullYear() }} — <strong>AmpleCoin</strong>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-    import Alerts from "../components/Alerts";
-    import LoginDialog from "../components/LoginDialog";
-    import ProfileDialog from "../components/ProfileDialog";
+  import Alerts from "../components/Alerts";
+  import LoginDialog from "../components/LoginDialog";
+  import ProfileDialog from "../components/ProfileDialog";
 
-    export default {
-        components: { Alerts, LoginDialog, ProfileDialog},
-        data() {
-            return {
-                searchKeyword: "",
-                drawer: false,
-                items: [
-                    // {icon: "mdi-filmstrip", title: "Movies", to: "/movies", new: false},
-                ],
-                miniVariant: false,
-                right: true,
-                rightDrawer: false,
-                title: "AmpleCoin"
-            };
-        },
-        methods: {
-        },
-        computed: {
-        },
-        watch: {
-        },
-        mounted() {
-        },
-    };
+  export default {
+    components: {Alerts, LoginDialog, ProfileDialog},
+    data() {
+      return {
+        searchKeyword: "",
+        drawer: false,
+        items: [
+          // {icon: "mdi-filmstrip", title: "Movies", to: "/movies", new: false},
+        ],
+        miniVariant: false,
+        right: true,
+        rightDrawer: false,
+        title: "AmpleCoin"
+      };
+    },
+    methods: {},
+    computed: {},
+    watch: {},
+    mounted() {
+    },
+  };
 </script>
 
 <style>

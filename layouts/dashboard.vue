@@ -210,7 +210,7 @@
               active: false,
               items: [
                 {title: 'All Users', to: "/app/users"},
-                {title: 'Add User', to: "/app/users/add"},
+                // {title: 'Add User', to: "/app/users/add"},
                 // {title: 'Bulk Create', to: "/app/voucher/bulk"},
               ],
             },

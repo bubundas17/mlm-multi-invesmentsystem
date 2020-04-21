@@ -22,10 +22,16 @@
           </v-list>
 
           <h2 class="sub-header">Submitted Aadhaar Image</h2>
+          <div >
+            <v-img :src="`/api/v1/kyc/uploads/${kyc.filename}-1.jpg`" max-width="50%"> </v-img>
+            <v-img :src="`/api/v1/kyc/uploads/${kyc.filename}-2.jpg`" max-width="50%"> </v-img>
+          </div>
 
-          <v-img :src="`/api/v1/kyc/uploads/${kyc.filename}`" max-width="50%"> </v-img>
-
-          <a :href="`/api/v1/kyc/uploads/${kyc.filename}`" :download="kyc.filename">Download Image</a>
+          <p class="ma-2">
+            <a :href="`/api/v1/kyc/uploads/${kyc.filename}-1.jpg`" :download="kyc.filename + `-1.jpg`">Download Image 1</a>
+            <br>
+            <a :href="`/api/v1/kyc/uploads/${kyc.filename}-2.jpg`" :download="kyc.filename + `-2.jpg`">Download Image 2</a>
+          </p>
         </v-card-text>
         <v-card-actions>
           <v-spacer>

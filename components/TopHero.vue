@@ -1,11 +1,13 @@
 
 <template>
   <v-layout class="hero">
+
     <v-container class="hero-container main-container">
       <v-layout d-flex row wrap align-center="" justify-center="">
         <div class="text-center">
-          <span class="display-1 white--text">AmpleCoin</span> <br>
-          <span class="white--text">Welcome To AMPLECOIN</span>
+          <p class="display-1 white--text">AmpleCoin</p>
+          <p class="white--text mt-1">Answer to your questions for all crypto related payment needs</p>
+          <v-btn rounded large color="orange" dark class="mt-3" to="/auth/signup">Register Now</v-btn>
         </div>
       </v-layout>
     </v-container>
@@ -18,11 +20,12 @@
 </script>
 <style scoped>
   .hero {
-    background: linear-gradient(125deg, rgba(0, 153, 99, 0.99) 0, #0a69e6 100%) !important;
+    background-image: url("../assets/images/top-bg.jpg");
+    background-size: cover;
   }
   .hero-container {
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 180px;
+    margin-bottom: 180px;
     /*padding: 50px;*/
   }
   h1 {

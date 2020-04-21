@@ -32,18 +32,21 @@ router.get("/pending", authenticated, admin, async (req, res) => {
 
 router.use("/uploads", express.static(__dirname + "/../../uploads"));
 
-router.post("/submit-kyc", authenticated, multer().single("image"), async function (req, res) {
+router.post("/submit-kyc", authenticated, multer().array("image", 2), async function (req, res) {
+  if(!req.files || req.files.length !==2) return res.status(400).send({message: "Please Select Both Files"});
+
   // console.log("body: ", req.body);
-  // console.log("files:", req.file.originalname);
+  // console.log("files:", req.files);
   let filename = makeid(20);
-  filename += ".jpg";
+  // filename += ".jpg";
 
   await Kyc.create({
     user: req.user,
     filename: filename
   });
 
-  fs.writeFileSync(__dirname + `/../../uploads/${filename}`, req.file.buffer);
+  fs.writeFileSync(__dirname + `/../../uploads/${filename}-1.jpg`, req.files[0].buffer);
+  fs.writeFileSync(__dirname + `/../../uploads/${filename}-2.jpg`, req.files[1].buffer);
 
   return res.send({
     status: "OK"
