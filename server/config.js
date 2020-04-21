@@ -1,12 +1,12 @@
 require('dotenv').config();
 module.exports = {
-  siteUrl: "https://test.amplecoin.in",
+  siteUrl: "https://amplecoin.in",
   db: {
     uri: process.env.MONGO_DB_URI || 'mongodb://localhost/ampplecoin'
   },
-  jwtSecret: process.env.JWT_SECRET || "JKLSDHAKL:HJDLKJASHDLHLKAWSHJDLKSA",
-  sessionSecret: process.env.SESSION_SECRET || "SADHILAUHDLKAHLD",
-  towcapchaApiKey: process.env.TOW_CAPTHA_API_KEY || "29d316dc7f783dd00452e24a40ed4c04",
+  jwtSecret: process.env.JWT_SECRET || "loasjdjhgwbvhmcxzbjszjkb3dsa633sad56as446dsa6sa46fsad4sa6fdsa",
+  sessionSecret: process.env.SESSION_SECRET || "464asd65sa65d4s46asd46dsa65dsa44dsa 4dsa6sad4",
+  towcapchaApiKey: process.env.TOW_CAPTHA_API_KEY || "",
   newUserBonus: 25,
   referralBonus: 25,
   webServer: {
@@ -14,10 +14,10 @@ module.exports = {
     port: process.env.PORT || 3001
   },
   mail: {
-    from: "\"Team DigiBazaar\" admin@digibazaar.net",
-    pass: "Sj8dp9nFjt0[",
-    SMTPUsername: "admin@digibazaar.net",
-    SMTPHost: "mail.digibazaar.net",
+    from: "\"Team AmpleCoin\" noreply@amplecoin.in",
+    pass: "xsmtpsib-2953247515145e71129ed2c51924fb4afa8967aca8b2386f76f9b045487fe957-4Gn8AvzSTW9r3psF",
+    SMTPUsername: "prosubhamdas1998@gmail.com",
+    SMTPHost: "smtp-relay.sendinblue.com",
     SMTPPort: 465
 
   },
@@ -40,14 +40,9 @@ module.exports = {
 
   },
   resellers: {
-    banner: `
-  ___   _   _____   _____ ___  _  _ ___ ___ ___
- | __| /_\\ / __\\ \\ / / __/ _ \\| \\| | __|_ _/ __|
- | _| / _ \\\\__ \\\\ V / (_| (_) | .\` | _| | | (_ |
- |___/_/ \\_\\___/ |_| \\___\\___/|_|\\_|_| |___\\___|
-`,
-    email: "support@easyconfig.net",
-    copyright: "Project EasyConfig © 2020",
-    hostName: "data.easyconfig.net"
+    banner: ``,
+    email: "",
+    copyright: "",
+    hostName: ""
   }
 };
