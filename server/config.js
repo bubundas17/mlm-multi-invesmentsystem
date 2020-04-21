@@ -18,7 +18,7 @@ module.exports = {
     pass: "xsmtpsib-2953247515145e71129ed2c51924fb4afa8967aca8b2386f76f9b045487fe957-4Gn8AvzSTW9r3psF",
     SMTPUsername: "prosubhamdas1998@gmail.com",
     SMTPHost: "smtp-relay.sendinblue.com",
-    SMTPPort: 465
+    SMTPPort: 587
 
   },
   consts: {
