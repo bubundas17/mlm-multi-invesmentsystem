@@ -26,7 +26,7 @@ transporter.verify(function(error, success) {
 
 // send mail with defined transport object
 transporter.sendMail({
-  from: `"Team DigiBazaar" <${config.mail.senderEmail}>`, // sender address
+  from: config.mail.from, // sender address
   to: "bubundas17@gmail.com", // list of receivers
   subject: "Test Mail", // Subject line
   text: "This is just a test mail. No no need to worry", // plain text body

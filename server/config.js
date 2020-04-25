@@ -14,10 +14,10 @@ module.exports = {
     port: process.env.PORT || 3001
   },
   mail: {
-    from: "\"Team AmpleCoin\" noreply@amplecoin.in",
-    pass: "xsmtpsib-2953247515145e71129ed2c51924fb4afa8967aca8b2386f76f9b045487fe957-4Gn8AvzSTW9r3psF",
-    SMTPUsername: "prosubhamdas1998@gmail.com",
-    SMTPHost: "smtp-relay.sendinblue.com",
+    from: "\"AmpleCoin\" <noreply@amplecoin.in>",
+    pass: "X5Mb2DP!0NI5",
+    SMTPUsername: "noreply@amplecoin.in",
+    SMTPHost: "evo.fastest-server.com",
     SMTPPort: 587
 
   },

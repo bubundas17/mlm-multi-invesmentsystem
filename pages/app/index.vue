@@ -1,16 +1,16 @@
 <template>
   <v-layout row wrap class="ma-2">
 
-<!--    <v-flex xs12 v-if="!user.emailVerified">-->
-<!--      <v-alert type="error" prominent>-->
-<!--        <v-row align="center" >-->
-<!--          <v-col >Verify Your Email</v-col>-->
-<!--          <v-col class="shrink">-->
-<!--            <v-btn>Send Verification Link</v-btn>-->
-<!--          </v-col>-->
-<!--        </v-row>-->
-<!--      </v-alert>-->
-<!--    </v-flex>-->
+    <v-flex xs12 v-if="!user.emailVerified">
+      <v-alert type="error" prominent>
+        <v-row align="center" >
+          <v-col >Verify Your Email</v-col>
+          <v-col class="shrink">
+            <v-btn>Send Verification Link</v-btn>
+          </v-col>
+        </v-row>
+      </v-alert>
+    </v-flex>
 
     <v-flex xs12 v-if="!user.kycVerified">
       <v-alert type="error" prominent>
