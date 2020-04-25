@@ -6,7 +6,7 @@
         <v-row align="center" >
           <v-col >Verify Your Email</v-col>
           <v-col class="shrink">
-            <v-btn>Send Verification Link</v-btn>
+            <v-btn @click="resendVerifyMail">Send Verification Link</v-btn>
           </v-col>
         </v-row>
       </v-alert>
@@ -71,6 +71,15 @@
       let licenses = await app.$axios.$get("/");
       return {
         licenses: licenses.licenseCount || 0
+      }
+    },
+    methods: {
+      resendVerifyMail(){
+        this.$axios.$post("/auth/resend-verify-email").then(data => {
+         this.showAlert("success", "Verify Mail Sent!");
+        }).catch(err => {
+          this.showAlert("error", "Failed to send verify mail.");
+        })
       }
     }
   }

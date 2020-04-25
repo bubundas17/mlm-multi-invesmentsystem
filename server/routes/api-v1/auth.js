@@ -73,6 +73,26 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+
+router.post("/resend-verify-email", async (req, res) => {
+  let emailVerifyToken = jwt.sign({username: req.user.username, action: "verifyEmail"},
+    config.jwtSecret, {expiresIn: '30day'});
+
+  ejs.renderFile(__dirname + "/../../templates/email/EmailVerification.ejs", {
+    token: emailVerifyToken,
+    siteUrl: config.siteUrl
+  }, async (err, str) => {
+    await emailSender({
+      subject: "Email Verification Link",
+      to: req.user.email,
+      html: str
+    })
+  });
+
+  res.send({message: "OK"})
+
+});
+
 router.get("/get-access-token", sessionAuth, (req, res) => {
   let token = jwt.sign({
       _id: req.user._id,
