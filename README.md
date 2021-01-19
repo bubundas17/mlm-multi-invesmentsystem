@@ -1,6 +1,6 @@
 # ampplecoin
 
-> ampplecoin wallet
+> MLM Plan
 
 ## Build Setup
 
