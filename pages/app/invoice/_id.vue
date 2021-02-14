@@ -9,7 +9,7 @@
       <v-list>
         <v-divider/>
         <v-list-item>
-        Total: {{ invoice.finalAmount }} AMP
+        Total: ₹{{ invoice.finalAmount }} INR
       </v-list-item>
         <v-divider/>
         <v-list-item>

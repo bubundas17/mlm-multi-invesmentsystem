@@ -28,8 +28,15 @@ router.post("/signup", async (req, res) => {
 
   try {
     let hashedpass = bcrypt.hashSync(password, 10);
+    let uptree = [];
+    if(referUser && referUser.uptree) {
+      uptree = referUser.uptree;
+      uptree.unshift(referUser._id)
+      uptree.slice(config.MLM_PERCENTAGES.length, uptree.length)
+    }
+
     let userData = await User.create({
-      username, name, email, password: hashedpass, phone, referredBy: referUser
+      username, name, email, password: hashedpass, phone, referredBy: referUser, uptree
     });
 
     let token = jwt.sign({
@@ -38,7 +45,6 @@ router.post("/signup", async (req, res) => {
         name: userData.name,
         email: userData.email,
         admin: userData.admin,
-
       },
       config.jwtSecret, {expiresIn: '10m'});
 

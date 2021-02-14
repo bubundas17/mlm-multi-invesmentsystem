@@ -13,6 +13,9 @@ module.exports = {
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
     ],
+    script: [
+      { src: 'https://checkout.razorpay.com/v1/checkout.js' },
+    ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
@@ -81,7 +84,7 @@ module.exports = {
           success: colors.green.accent3
         },
         light: {
-          primary: "#1c3146",
+          primary: "#4a148c",
           secondary: colors.red.base,
           accent: colors.blue.base,
           error: colors.deepOrange.base,

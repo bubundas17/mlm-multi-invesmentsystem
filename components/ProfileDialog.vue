@@ -19,7 +19,7 @@
               <h2 class="title">{{ user.name }}</h2>
             </v-list-item-title>
             <v-list-item-sub-title>
-              Balance: {{ Number(user.balance).toFixed(2) }} AMP
+              Balance: {{ Number(user.balance).toFixed(2) }} INR
             </v-list-item-sub-title>
           </v-list-item-content>
         </v-list-item>

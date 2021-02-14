@@ -9,10 +9,15 @@ let Schema = mongoose.Schema({
   referredBy: {
     type: mongoose.Schema.Types.ObjectId, ref: "User", index: 1
   },
-
+  maxRefBonus: {type: Number, default: 0},
+  totalRefBonus: {type: Number, default: 0},
   admin: {type: Boolean, default: false},
   created: {type: Date, default: Date.now},
   balance: {type: Number, default: config.newUserBonus},
+  uptree: [
+    {type: mongoose.Schema.Types.ObjectId, ref: "User", index: 1}
+  ],
+  isActive: {type: Boolean, default: false},
   emailVerified: {type: Boolean, default: false},
   kycVerified: {type: Boolean, default: false},
   banned: {type: Boolean, default: false},

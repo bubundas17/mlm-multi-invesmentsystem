@@ -1,38 +1,21 @@
-version: "3"
+version: '3.4'
 
 services:
-  web:
-    build: .
-#    ports:
-#      - "80:3000"
+  samba:
+    image: dperson/samba
     environment:
-      - JWT_SECRET="askjdas asld hlauiawlasu has jklasd j "
-      - SESSION_SECRET="hjka sjk asd f ghjas  ghja hjksd"
-      - MONGO_DB_URI=mongodb://db/easycfg
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.easyconfighttp.rule=Host(`easyconfig.net`)"
-      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.easyconfighttp.middlewares=traefik-https-redirect"
-      - "traefik.http.routers.easyconfig.rule=Host(`easyconfig.net`)"
-      - "traefik.http.routers.easyconfig.entrypoints=websecure"
-      - "traefik.http.routers.easyconfig.tls.certresolver=lehttp"
-      - "traefik.http.routers.easyconfig.tls=true"
-      - "traefik.docker.network=gateway"
-    links:
-      - db
-    networks:
-      - backend
-      - gateway
-  db:
-    image: mongo:bionic
+      TZ: 'EST5EDT'
+    ports:
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139/tcp"
+      - "445:445/tcp"
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
     volumes:
-      - ./mongodb:/data/db
-    networks:
-      - backend
-
-networks:
-  backend:
-  gateway:
-    external:
-      name: gateway
+      - ./data:/mnt:z
+    command: '-s "Bobs Volume;/mnt;yes;no;no;bob" -u "bob;gasywplnmks45872" -p'

@@ -29,11 +29,11 @@ router.get("/verify", async (req, res) => {
     });
     res.send(`
         <h1>Email Verification Completed!</h1>
-        <p>Redirecting you in 5 sec...</p>
+        <p>Redirecting you in 1 sec...</p>
        <script>
          setTimeout(function(){
             window.location.href = '/';
-         }, 5000);
+         }, 1000);
       </script>
     `);
   } catch (err) {

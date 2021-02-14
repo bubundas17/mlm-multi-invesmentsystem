@@ -43,6 +43,40 @@
       </v-card>
 
     </v-flex>
+    <v-flex xs12>
+      <v-card class="ma-2">
+        <v-card-title>Refer Limits</v-card-title>
+        <v-card-text>
+          <p class="body-2">Max Allowed Refer Earning: {{ this.user.maxRefBonus }} INR</p>
+          <p class="body-2">Total Refer Earning: {{ this.user.totalRefBonus }} INR</p>
+        </v-card-text>
+      </v-card>
+
+    </v-flex>
+    <v-layout column>
+      <v-card class="ma-2">
+        <h4 class=" ma-2 mb-n1">Select Level</h4>
+        <v-select label="Select Level" solo flat class="mb-n7"  :items="lavels" v-model="lavel"></v-select>
+        <v-divider></v-divider>
+        <v-card-actions>
+        </v-card-actions>
+          <v-data-table
+            :headers="headers"
+            :items="currentRefList"
+            :items-per-page="5"
+            class="elevation-0"
+          >
+
+            <template v-slot:item.isActive="{ item }">
+              <v-simple-checkbox
+                v-model="item.isActive"
+                disabled
+              ></v-simple-checkbox>
+            </template>
+          </v-data-table>
+      </v-card>
+    </v-layout>
+
 
   </v-layout>
 </template>
@@ -57,6 +91,27 @@
         ref
       }
     },
+    data(){
+      return {
+        lavels: [1,2,3,4,5,6,7,8,9,10],
+        lavel: 1,
+        headers: [
+          {
+            text: 'Name',
+            align: 'start',
+            sortable: false,
+            value: 'name',
+          },
+          {
+            text: 'Username',
+            align: 'center',
+            sortable: false,
+            value: 'username',
+          },
+          { text: 'Is Active', sortable: false, align: 'right', value: 'isActive' },
+        ]
+      }
+    },
     computed: {
       referralLink(){
         if(process.browser) {
@@ -64,8 +119,16 @@
         } else  {
           return ""
         }
+      },
+      currentRefList() {
+        let users = this.ref.users;
+        users= users.filter(user => {
+          return user.uptree.indexOf(this.user._id) === this.lavel -1;
+        })
+        return users;
       }
-    }
+    },
+
   }
 </script>
 

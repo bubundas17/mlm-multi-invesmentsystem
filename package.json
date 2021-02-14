@@ -34,10 +34,13 @@
     "nodemailer": "^6.4.6",
     "nuxt": "^2.0.0",
     "nuxt-client-init-module": "^0.1.7",
+    "prando": "^5.1.2",
+    "razorpay": "^2.0.6",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "uuid": "^3.4.0",
     "validator": "^12.1.0",
+    "vue-fortune-wheel-extended": "^0.2.7",
     "yarn": "^1.21.1"
   },
   "devDependencies": {
