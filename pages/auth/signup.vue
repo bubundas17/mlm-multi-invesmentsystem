@@ -11,7 +11,6 @@
             <v-text-field placeholder="Username" prepend-icon="mdi-account-circle" name="username" v-model="username" :rules="usernameRules"/>
             <v-text-field placeholder="Email ID" prepend-icon="mdi-at" name="email" v-model="email" :rules="emailRules"/>
             <v-text-field placeholder="10 Digit Mobile Number" prepend-icon="mdi-cellphone-android" name="phone" v-model="phone" :rules="PhoneRules"/>
-            <v-text-field placeholder="10 Digit Mobile Number" prepend-icon="mdi-cellphone-android" name="phone" v-model="phone" :rules="PhoneRules"/>
             <v-select placeholder="State" prepend-icon="mdi-map-marker" name="Select State" type="text"
                           v-model="state" :items="states"/>
             <v-menu
@@ -40,6 +39,8 @@
                 @input="datePicker = false"
               ></v-date-picker>
             </v-menu>
+            <v-text-field placeholder="Password" prepend-icon="mdi-form-textbox-password" name="password"
+                          type="password" v-model="password" :rules="passRules"/>
             <v-text-field placeholder="Confirm Password" prepend-icon="mdi-form-textbox-password" name="password"
                           type="password" v-model="passwordc" :rules="passcRules"/>
             <v-text-field placeholder="Referral Code (Optional)" prepend-icon="mdi-at" name="Referral Code" v-model="refer" :disabled="referDisabled"/>
