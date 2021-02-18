@@ -55,7 +55,7 @@
     <v-app-bar dark color="primary" flat app>
       <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-lg-and-up"/>
       <!--      <img :src="require('../assets/images/logo.png')" style="max-height: 60%">-->
-      <v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
+      <img src="/icon.png" height="56px"><v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
       <v-spacer/>
       <v-toolbar-items></v-toolbar-items>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -83,7 +83,7 @@
       <alerts></alerts>
       <nuxt/>
       <v-footer class="grey lighten-3">
-        <span class="px-2">BDPRO MLM &copy;2020</span>
+        <span class="px-2">The Truth Club &copy;2020</span>
         <!--      <v-spacer/>-->
         <!--      <nuxt-link to="/about" :class="darkMode ? 'white&#45;&#45;text': ''" class="px-2">About Us</nuxt-link>-->
         <!--      |-->
@@ -119,7 +119,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "BDPRO MLM "
+      title: "The Truth Club"
     };
   },
   methods: {

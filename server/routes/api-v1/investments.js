@@ -113,7 +113,7 @@ router.post("/buy", authenticated, async (req, res) => {
             txnType: config.consts.INVOICE_TYPE_CREDIT,
             finalAmount: topUpAmount
           })
-          await UserDB.findByIdAndUpdate(upUser._id, {$inc: {balance: topUpAmount, totalRefBonus: topUpAmount}})
+          await UserDB.findByIdAndUpdate(upUser._id, {$inc: {refBalance: topUpAmount, totalRefBonus: topUpAmount}})
         }
       }
       res.send({message: "ok"})
@@ -211,7 +211,7 @@ router.post("/redeem", async (req, res) => {
           txnType: config.consts.INVOICE_TYPE_CREDIT,
           finalAmount: topUpAmount
         })
-        await UserDB.findByIdAndUpdate(upUser._id, {$inc: {balance: topUpAmount, totalRefBonus: topUpAmount}})
+        await UserDB.findByIdAndUpdate(upUser._id, {$inc: {refBalance: topUpAmount, totalRefBonus: topUpAmount}})
       }
     }
     res.send({message: "ok"})

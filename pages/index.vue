@@ -3,13 +3,13 @@
     column
   >
 
-    <h1>Something Awesome is cooking!</h1>
-<!--  <top-hero/>-->
-<!--    <vision></vision>-->
+<!--    <h1>Something Awesome is cooking!</h1>-->
+  <top-hero/>
+    <vision></vision>
 <!--    <we-are-paying-you-back-technically/>-->
 <!--    <AwesomeTeam></AwesomeTeam>-->
 <!--    <Exchanges/>-->
-<!--    <WeArePayingBackBlockchain/>-->
+    <WeArePayingBackBlockchain/>
   </v-layout>
 </template>
 

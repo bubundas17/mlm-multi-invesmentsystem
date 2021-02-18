@@ -36,17 +36,18 @@
 
       <v-dialog
         v-model="resultsDialog"
-        max-width="400"
+        max-width="500"
         persistent
       >
         <v-card style="overflow: hidden">
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn icon @click="resultsDialog = false">
+              <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-card-actions>
-          <v-card-text>
-            Congratulations! Your percentage: {{ earned.percentage }} Your Luck Earned  You  {{ earned.creditAmount }} INR.
+          <v-card-text class="headline text-center">
+            Congratulations! Your Wining Is: {{ earned.percentage }}%! Your Luck Earned  You  {{ earned.creditAmount }} INR.
           </v-card-text>
         </v-card>
       </v-dialog>

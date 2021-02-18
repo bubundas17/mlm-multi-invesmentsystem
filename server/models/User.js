@@ -14,6 +14,7 @@ let Schema = mongoose.Schema({
   admin: {type: Boolean, default: false},
   created: {type: Date, default: Date.now},
   balance: {type: Number, default: config.newUserBonus},
+  refBalance: {type: Number, default: 0},
   uptree: [
     {type: mongoose.Schema.Types.ObjectId, ref: "User", index: 1}
   ],

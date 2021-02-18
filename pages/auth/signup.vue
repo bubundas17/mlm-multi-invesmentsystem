@@ -11,8 +11,35 @@
             <v-text-field placeholder="Username" prepend-icon="mdi-account-circle" name="username" v-model="username" :rules="usernameRules"/>
             <v-text-field placeholder="Email ID" prepend-icon="mdi-at" name="email" v-model="email" :rules="emailRules"/>
             <v-text-field placeholder="10 Digit Mobile Number" prepend-icon="mdi-cellphone-android" name="phone" v-model="phone" :rules="PhoneRules"/>
-            <v-text-field placeholder="Password" prepend-icon="mdi-form-textbox-password" name="password" type="password"
-                          v-model="password" :rules="passRules"/>
+            <v-text-field placeholder="10 Digit Mobile Number" prepend-icon="mdi-cellphone-android" name="phone" v-model="phone" :rules="PhoneRules"/>
+            <v-select placeholder="State" prepend-icon="mdi-map-marker" name="Select State" type="text"
+                          v-model="state" :items="states"/>
+            <v-menu
+              v-model="datePicker"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290px"
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="date"
+                  label="Date of Barth"
+                  hint="MM/DD/YYYY format"
+                  persistent-hint
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="date"
+                no-title
+                @input="datePicker = false"
+              ></v-date-picker>
+            </v-menu>
             <v-text-field placeholder="Confirm Password" prepend-icon="mdi-form-textbox-password" name="password"
                           type="password" v-model="passwordc" :rules="passcRules"/>
             <v-text-field placeholder="Referral Code (Optional)" prepend-icon="mdi-at" name="Referral Code" v-model="refer" :disabled="referDisabled"/>
@@ -41,6 +68,8 @@
     data() {
       return {
         loading: false,
+        date: null,
+        datePicker: false,
         name: "",
         username: "",
         email: "",
@@ -49,6 +78,41 @@
         refer: "",
         referDisabled: false,
         passwordc: "",
+        state: "",
+        states: [
+          "Andhra Pradesh",
+          "Arunachal Pradesh",
+          "Assam",
+          "Bihar",
+          "Chattisgarh",
+          "Delhi",
+          "Goa",
+          "Gujarat",
+          "Haryana",
+          "Himachal Pradesh",
+          "Jammu and Kashmir",
+          "Jharkhand",
+          "Karnataka",
+          "Kerala",
+          "Lakshadweep Islands",
+          "Madhya Pradesh",
+          "Maharashtra",
+          "Manipur",
+          "Meghalaya",
+          "Mizoram",
+          "Nagaland",
+          "Odisha",
+          "Pondicherry",
+          "Punjab",
+          "Rajasthan",
+          "Sikkim",
+          "Tamil Nadu",
+          "Telangana",
+          "Tripura",
+          "Uttar Pradesh",
+          "Uttarakhand",
+          "West Bengal",
+        ],
         nameRules: [
           v => !!v || 'Name is required',
           v => (v && v.length <= 20) || 'Name must be less than 20 characters'

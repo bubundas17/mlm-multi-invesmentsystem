@@ -5,8 +5,8 @@
     <v-container class="hero-container main-container">
       <v-layout d-flex row wrap align-center="" justify-center="">
         <div class="text-center">
-          <p class="display-1 white--text">AmpleCoin</p>
-          <p class="white--text mt-1">Answer to your questions for all crypto related payment needs</p>
+          <p class="display-1 white--text">The Truth Club</p>
+          <p class="white--text mt-1">Give Help to take help.</p>
           <v-btn rounded large color="orange" dark class="mt-3" to="/auth/signup">Register Now</v-btn>
         </div>
       </v-layout>

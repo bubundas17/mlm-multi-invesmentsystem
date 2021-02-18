@@ -45,10 +45,11 @@
     </v-flex>
     <v-flex xs12>
       <v-card class="ma-2">
-        <v-card-title>Refer Limits</v-card-title>
+        <v-card-title>Refer Stats</v-card-title>
         <v-card-text>
           <p class="body-2">Max Allowed Refer Earning: {{ this.user.maxRefBonus }} INR</p>
           <p class="body-2">Total Refer Earning: {{ this.user.totalRefBonus }} INR</p>
+          <p class="body-2">Available Balance: {{ this.user.refBalance }} INR</p>
         </v-card-text>
       </v-card>
 

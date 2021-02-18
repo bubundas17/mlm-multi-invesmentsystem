@@ -3,7 +3,7 @@
     <v-container>
       <v-layout wrap>
         <v-flex xs12 md12>
-          <h1 class="my-4 headline">Basic info about Ample Coin</h1>
+          <h1 class="my-4 headline">Basic info about The Truth Club</h1>
           <h2 class="subtitle orange--text darken-2">Making crypto a secure form of payment</h2>
           <p>By applying the technology to a series of real world use cases, With the goals of supporting the online
             platforms and technology available we have come up with the idea of Ample coin. Ample coin is a
