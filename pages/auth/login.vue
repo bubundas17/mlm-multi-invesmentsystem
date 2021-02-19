@@ -44,7 +44,7 @@
     },
     head() {
       return {
-        title: `Login - Solid Torrents`
+        title: `Login`
       }
     }
   }

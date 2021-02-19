@@ -82,19 +82,19 @@
     <v-content>
       <alerts></alerts>
       <nuxt/>
-      <v-footer class="grey lighten-3">
-        <span class="px-2">The Truth Club &copy;2020</span>
-        <!--      <v-spacer/>-->
-        <!--      <nuxt-link to="/about" :class="darkMode ? 'white&#45;&#45;text': ''" class="px-2">About Us</nuxt-link>-->
-        <!--      |-->
-        <!--      <nuxt-link to="/donate" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">Donate</nuxt-link>-->
-        <!--      |-->
-        <!--      <nuxt-link to="/dmca" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">DMCA</nuxt-link>-->
-        <!--      |-->
-        <!--      <nuxt-link class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''" to="/privacy">Privacy Policy</nuxt-link>-->
-      </v-footer>
-    </v-content>
 
+    </v-content>
+    <v-footer class="grey lighten-3" app>
+      <span class="px-2">The Truth Club &copy;2020</span>
+      <!--      <v-spacer/>-->
+      <!--      <nuxt-link to="/about" :class="darkMode ? 'white&#45;&#45;text': ''" class="px-2">About Us</nuxt-link>-->
+      <!--      |-->
+      <!--      <nuxt-link to="/donate" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">Donate</nuxt-link>-->
+      <!--      |-->
+      <!--      <nuxt-link to="/dmca" class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''">DMCA</nuxt-link>-->
+      <!--      |-->
+      <!--      <nuxt-link class="px-2" :class="darkMode ? 'white&#45;&#45;text': ''" to="/privacy">Privacy Policy</nuxt-link>-->
+    </v-footer>
   </v-app>
 </template>
 
@@ -151,7 +151,7 @@ export default {
 
         {
           action: 'mdi-wallet',
-          title: 'Wallet',
+          title: 'Get Help',
           nested: true,
           active: false,
           items: [
@@ -164,7 +164,7 @@ export default {
         },
         {
           action: 'mdi-cash-multiple',
-          title: 'Investments',
+          title: 'Give Help',
           nested: true,
           active: false,
           items: [
