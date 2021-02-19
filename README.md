@@ -4,6 +4,14 @@
 
 ## Build Setup
 
+### ENV SETUP
+Install NodeJs, Install MongoDB, Install Yarn. 
+
+> For Windows: 
+Open powershell as admin and run
+
+```npm install --global windows-build-tools```
+
 ``` bash
 # install dependencies
 $ yarn install
