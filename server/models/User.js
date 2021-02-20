@@ -5,6 +5,8 @@ let Schema = mongoose.Schema({
   email: {type: String, index: 1},
   name: {type: String},
   phone: {type: Number},
+  state: {type: String},
+  dob: {type: Date, default: Date.now()},
   password: {type: String, required: true},
   referredBy: {
     type: mongoose.Schema.Types.ObjectId, ref: "User", index: 1

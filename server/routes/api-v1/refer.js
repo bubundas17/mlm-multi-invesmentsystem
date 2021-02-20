@@ -27,5 +27,9 @@ router.get("/", authenticated, async (req, res) => {
   })
 });
 
+router.post("/transfer", async (req, res) => {
+
+})
+
 
 module.exports = router;

@@ -148,7 +148,7 @@
         if (this.$refs.form.validate()) {
           try {
             this.loading = true;
-            await this.$axios.post("/auth/signup", {username: this.username, email: this.email, name: this.name, password: this.password, refer: this.refer, phone: this.phone});
+            await this.$axios.post("/auth/signup", {username: this.username, email: this.email, name: this.name, password: this.password, refer: this.refer, phone: this.phone, state: this.state, dob: this.date});
             this.showAlert("success", "SignUp Done!, Trying To Login...");
             setTimeout(() => {
               this.$store.dispatch("login", {username: this.username, password: this.password})
