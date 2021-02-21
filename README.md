@@ -1,6 +1,12 @@
-# ampplecoin
+# TheTruthClub
 
 > MLM Plan
+
+$ sudo su - bubun
+
+$ cd mlm-multi-invesmentsystem
+
+
 
 ## Build Setup
 
