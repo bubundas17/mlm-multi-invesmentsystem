@@ -35,4 +35,8 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# ampplecoin
+# After Restart
+
+sudo service mongod start
+pm2 restart all
+
