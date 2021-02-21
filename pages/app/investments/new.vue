@@ -1,6 +1,6 @@
 <template>
   <v-layout column>
-    <v-card class="ma-2 mt-12" >
+    <v-card class="ma-2 mt-12">
       <v-card-title class="secondary white--text floating-title">
         BUY Investment Plan
       </v-card-title>
@@ -8,7 +8,10 @@
         <h2 class="text-center my-3">Enter Amount You want To invest</h2>
         <v-text-field solo label="Enter Amount" rounded v-model="amount">
           <template slot="append">
-            <v-btn rounded class="primary" @click="pay"><v-icon left>mdi-cart-outline</v-icon>BUY</v-btn>
+            <v-btn rounded class="primary" @click="pay">
+              <v-icon left>mdi-cart-outline</v-icon>
+              BUY
+            </v-btn>
           </template>
         </v-text-field>
       </v-card-text>
@@ -20,11 +23,25 @@
 export default {
   name: "new.vue",
   layout: "dashboard",
-  data(){
+  async asyncData({app}) {
+    try {
+      let data = await app.$axios.$get("/investments/new")
+      console.log(data)
+      return {
+        canInvest: data.canInvest
+      }
+    } catch (e) {
+      return {
+        canInvest: false
+      }
+
+    }
+  },
+  data() {
     return {
-      amount: 200,
-      min: 200,
-      max: 5000
+      amount: 500,
+      min: 100,
+      max: 100000
     }
   },
   computed: {
@@ -33,14 +50,13 @@ export default {
     }
   },
   methods: {
-    async submitPayment(payment){
+    async submitPayment(payment) {
       try {
         await this.$axios.$post("/investments/buy", {payment, amount: this.rPayAmount})
         this.showAlert("success", "Investment Success!")
         this.$router.push("/app/investments")
-      }catch (e) {
+      } catch (e) {
         this.showAlert("error", "Payment Failed.")
-
       }
     },
     // Object
@@ -50,10 +66,10 @@ export default {
     // org_name: "Razorpay Software Private Ltd"
     // razorpay_payment_id: "pay_GXxK3sGeaGiX7E"
     // __proto__: Object
-    async pay(){
-      if(this.amount < this.min) return this.showAlert("error", "Minimum Amount is 200 INR")
-      if(this.amount > this.max) return this.showAlert("error", "Maximum Amount is 5000 INR")
-
+    async pay() {
+      if (this.amount < this.min) return this.showAlert("error", "Minimum Amount is 200 INR")
+      if (this.amount > this.max) return this.showAlert("error", "Maximum Amount is 5000 INR")
+      if(!this.canInvest) return this.showAlert("error", "You cannot Invest More Right Now.")
       var options = {
         key: "rzp_test_KJcjoHIWEsmVBD",
         amount: this.rPayAmount,
@@ -70,8 +86,8 @@ export default {
         theme: {
           color: "#f55c1f"
         },
-        handler:  (response) =>{
-         // console.log(response);
+        handler: (response) => {
+          // console.log(response);
           this.submitPayment(response);
         },
       };

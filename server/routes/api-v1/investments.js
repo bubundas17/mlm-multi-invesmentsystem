@@ -20,6 +20,7 @@ router.get("/", authenticated, async (req, res) => {
     investments = investments.map(rec => {
       return {
         spinAvailable: util.isSpinAvailable(rec),
+        nextSpin: util.nextSpinDate(rec),
         spinsLeft: util.daysBetween(rec.startDate, rec.endDate) - util.weekDays(rec.startDate, rec.endDate),
         ...rec
       }
@@ -27,6 +28,7 @@ router.get("/", authenticated, async (req, res) => {
     res.send({investments});
 
   } catch (e) {
+    console.log(e)
     res.status(400).send({error: 1})
   }
 })
@@ -60,6 +62,31 @@ router.post("/:id/spin", authenticated, async (req, res) => {
     percentage,
     creditAmount
   })
+})
+
+
+router.get("/new", authenticated, async (req, res) => {
+  try {
+    if (req.user.maxRefBonus - 100 <= req.user.totalRefBonus) {
+      return res.send({
+        canInvest: true
+      })
+    }
+    let investment = await InvesmentDB.findOne({user: req.user._id, endDate: {$gte: new Date()}});
+    if (investment) return res.send({
+      canInvest: false
+    })
+    res.send({
+      canInvest: true
+    })
+  } catch (e) {
+    console.log(e)
+    res.send({
+      canInvest: true
+    })
+  }
+
+
 })
 
 router.post("/buy", authenticated, async (req, res) => {
@@ -101,7 +128,7 @@ router.post("/buy", authenticated, async (req, res) => {
         let percentage = config.MLM_PERCENTAGES[index];
         let upUser = CurrentUser.uptree[index];
         let level = index;
-        level = (level/1) + 1
+        level = (level / 1) + 1
         let topUpAmount = paymentres.amount / 100 * ((percentage) / 100)
         topUpAmount = Math.floor(topUpAmount)
         if (upUser.isActive && ((upUser.maxRefBonus - upUser.totalRefBonus) >= topUpAmount)) {
@@ -109,7 +136,7 @@ router.post("/buy", authenticated, async (req, res) => {
           await Invoice.create({
             user: upUser._id,
             title: "Referral Bonus for investment at lvl " + (level),
-            description: `Refer bonus credit for new investment purchase at lvl ${ (level)} of ${paymentres.amount / 100} INR`,
+            description: `Refer bonus credit for new investment purchase at lvl ${(level)} of ${paymentres.amount / 100} INR`,
             txnType: config.consts.INVOICE_TYPE_CREDIT,
             finalAmount: topUpAmount
           })
@@ -117,8 +144,7 @@ router.post("/buy", authenticated, async (req, res) => {
         }
       }
       res.send({message: "ok"})
-    }
-    else  {
+    } else {
       res.status(400).send({error: "Payment Failed."})
     }
   } catch (e) {
@@ -171,7 +197,6 @@ router.post("/redeem", async (req, res) => {
     // })
 
 
-
     let startDay = new Date();
     let stopDay = new Date();
     startDay.setHours(0, 0, 0, 0);
@@ -199,7 +224,7 @@ router.post("/redeem", async (req, res) => {
       let percentage = config.MLM_PERCENTAGES[index];
       let upUser = CurrentUser.uptree[index];
       let level = index;
-      level = (level/1) + 1
+      level = (level / 1) + 1
       let topUpAmount = voucherdata.amount * ((percentage) / 100)
       topUpAmount = Math.floor(topUpAmount)
       if (upUser.isActive && ((upUser.maxRefBonus - upUser.totalRefBonus) >= topUpAmount)) {
@@ -207,7 +232,7 @@ router.post("/redeem", async (req, res) => {
         await Invoice.create({
           user: upUser._id,
           title: "Referral Bonus for investment at lvl " + (level),
-          description: `Refer bonus credit for new investment purchase at lvl ${ (level)} of ${voucherdata.amount} INR`,
+          description: `Refer bonus credit for new investment purchase at lvl ${(level)} of ${voucherdata.amount} INR`,
           txnType: config.consts.INVOICE_TYPE_CREDIT,
           finalAmount: topUpAmount
         })

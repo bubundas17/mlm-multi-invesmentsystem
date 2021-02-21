@@ -4,7 +4,7 @@
       <v-card-title class="secondary white--text" >Create Vouchers</v-card-title>
       <v-card-text>
         <p class="body-1 mt-2">Create A Vouchers</p>
-        <v-text-field label="Enter Amount in AmpleCOIN" type="number" v-model="amount"/>
+        <v-text-field label="Enter Amount in INR" type="number" v-model="amount"/>
       </v-card-text>
       <v-card-actions>
         <v-btn block dark class="primary" :loading="createVoucherLoading" @click="createVoucher">Create</v-btn>
@@ -15,7 +15,7 @@
       <v-card-title class="secondary white--text">Vouchers</v-card-title>
       <v-list dence>
         <v-list-item v-for="voucher in vouchers" :key="voucher._id">
-          {{  voucher.code }} - ${{ voucher.amount }} - {{ voucher.status }} -
+          {{  voucher.code }} - Rs. {{ voucher.amount }} INR - {{ voucher.status }} -
           {{ voucher.createdBy ? voucher.createdBy.username : "??" }} - {{ voucher.usedBy ? voucher.usedBy.username : "??" }}
         </v-list-item>
       </v-list>

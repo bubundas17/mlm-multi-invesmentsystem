@@ -8,7 +8,7 @@
         </p>
         <v-list>
           <v-list-item>
-            Support Email: support@amplecoin.com
+            Support Email: support@thetruthclub.in
           </v-list-item>
         </v-list>
       </v-card-text>

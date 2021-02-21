@@ -11,11 +11,14 @@
           <v-flex md3 v-for="inv in investments" key="inv._id">
             <v-card class="ma-3" elevation="4">
               <v-card-text>
+                <v-layout row wrap>
+                  <v-spacer/>
+                  <v-chip color="primary mt-n8 mr-n4">{{ inv.status }}</v-chip>
+                </v-layout>
                 <h2 class="text-center py-3">{{ inv.amount }}</h2>
-                <span>{{ inv.status }}</span>
+                <span></span>
               </v-card-text>
-
-              <v-btn block class="ma-0 primary" flat :disabled="!inv.spinAvailable" @click="openDialog(inv._id)">Spin
+              <v-btn block class="ma-0 primary" flat :disabled="!inv.spinAvailable" @click="openDialog(inv._id)">{{ inv.spinAvailable ? "Spin" : "Next " +  fromNow(inv.nextSpin)  }}
               </v-btn>
             </v-card>
           </v-flex>
@@ -86,6 +89,7 @@
 
 <script>
 import Wheel from "~/components/lucky-wheel/lucky-wheel";
+import  moment from "moment";
 
 export default {
   name: "index",
@@ -125,9 +129,15 @@ export default {
     openDialog(investment) {
       this.investmentId = investment;
       this.dialog = true
+    },
+    fromNow(date){
+      let start = moment(Date.now());
+      let stop = moment(date);
+      return stop.from(start);
     }
 
-  }
+  },
+
 }
 </script>
 

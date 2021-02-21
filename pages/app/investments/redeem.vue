@@ -26,7 +26,7 @@
       redeemCode() {
         this.loading = true
 
-        this.$axios.$post("/wallet/redeem", {voucher: this.voucher})
+        this.$axios.$post("/investments/redeem", {voucher: this.voucher})
           .then(data => {
             console.log(data)
             this.showAlert("success", "Voucher Redeemed.")
