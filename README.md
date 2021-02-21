@@ -6,6 +6,7 @@ $ sudo su - bubun
 
 $ cd mlm-multi-invesmentsystem
 
+$ git pull
 
 
 ## Build Setup
