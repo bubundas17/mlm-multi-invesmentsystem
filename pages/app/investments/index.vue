@@ -1,12 +1,12 @@
 <template>
   <v-layout column wrap>
     <v-card class="ma-2 grey lighten-4 mt-9">
-      <v-card-title class="secondary white--text floating-title">Active Investments
+      <v-card-title class="secondary white--text floating-title">Active Get Help Plans
         <v-spacer></v-spacer>
-        <v-btn rounded class="primary ps-" to="/app/investments/new">Buy New</v-btn>
+        <v-btn rounded class="primary ps-" to="/app/investments/new">Donate New</v-btn>
       </v-card-title>
       <v-card-text class="">
-        <p class="mt-3">Your Investment Plans.</p>
+        <p class="mt-3">Your Give Help Plans.</p>
         <v-layout row wrap>
           <v-flex md3 v-for="inv in investments" key="inv._id">
             <v-card class="ma-3" elevation="4">
