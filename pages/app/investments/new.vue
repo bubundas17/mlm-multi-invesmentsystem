@@ -10,7 +10,7 @@
           <template slot="append">
             <v-btn rounded class="primary" @click="pay">
               <v-icon left>mdi-cart-outline</v-icon>
-              BUY
+              Donate
             </v-btn>
           </template>
         </v-text-field>
