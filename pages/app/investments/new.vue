@@ -2,10 +2,10 @@
   <v-layout column>
     <v-card class="ma-2 mt-12">
       <v-card-title class="secondary white--text floating-title">
-        BUY Investment Plan
+        New Give Help Plan
       </v-card-title>
       <v-card-text>
-        <h2 class="text-center my-3">Enter Amount You want To invest</h2>
+        <h2 class="text-center my-3">Enter Amount You want To Donate</h2>
         <v-text-field solo label="Enter Amount" rounded v-model="amount">
           <template slot="append">
             <v-btn rounded class="primary" @click="pay">
@@ -76,7 +76,7 @@ export default {
         currency: 'INR',
         name: "Acme Corp",
 
-        description: "Payment description ",
+        description: "Payment Dbuescription ",
         // order_id: 'sadsad',
         prefill: {
           name: this.user.name,
