@@ -109,11 +109,13 @@ export default {
 html {
   background: #dd7c7d;
 }
-
 .wheel-wrapper {
   width: 300px;
   height: 300px;
   position: absolute;
+  color: black;
+  font-weight: 900;
+  font-size: 15pt;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -151,7 +153,9 @@ html {
   border-radius: 1000px;
   overflow: hidden;
   transition: transform 4s ease-in-out;
-  background: #7eef97;
+  /*background: #7eef97;*/
+  background-size: contain;
+  background-image: url("/wheel-bg.png");
 }
 
 .wheel-bg.freeze {
@@ -182,7 +186,10 @@ html {
 }
 
 .prize-item .prize-name {
-  padding: 16px 0;
+  padding: 30px 0;
+  font-weight: 900;
+  font-size: 22pt;
+  color: white;
 }
 
 </style>

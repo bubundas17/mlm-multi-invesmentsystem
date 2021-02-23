@@ -6,17 +6,16 @@ f.emptyArray = (length = 1, value = false) => {
   arr.length = length;
   return Array.from(arr, x => value)
 }
-f.daysBetween = function (date1, date2) {
 
+f.daysBetween = function (date1, date2) {
   // The number of milliseconds in one day
   const ONE_DAY = 1000 * 60 * 60 * 24;
 
   // Calculate the difference in milliseconds
-  const differenceMs = Math.abs(date1 - date2);
+  const differenceMs = Math.abs(date1.getTime() - date2.getTime());
 
   // Convert back to days and return
   return Math.round(differenceMs / ONE_DAY);
-
 }
 
 f.isSpinAvailable = function (record, now = new Date(Date.now())) {
@@ -27,21 +26,20 @@ f.isSpinAvailable = function (record, now = new Date(Date.now())) {
   // console.log(record.startDate.getTime() <= now.getTime())
 
   if (new Date(record.startDate).getTime() < now.getTime() && new Date(record.endDate).getTime() > now.getTime()) {
-    let todatspin = this.getTodaySpin(record);
+    let todatspin = this.getTodaySpin(record, now);
     let completedSpins = record.completedSpins;
-    if(completedSpins[todatspin]) return false;
+    if (completedSpins[todatspin]) return false;
     return !this.isSunday(now);
     // return true;
   }
   return false;
 }
 
-f.getTodaySpin = function (record) {
-  let now = new Date();
-  // now.setHours(0);
-  let start = new Date( (new Date(record.startDate).toDateString()))
-  let end = new Date( (new Date(record.endDate).toDateString()))
-
+f.getTodaySpin = function (record, now = new Date()) {
+  now.setHours(0);
+  let start = new Date(new Date(record.startDate).toDateString())
+  let end = new Date(new Date(record.endDate).toDateString())
+  // console.log(start)
   if (start.getTime() > now.getTime()) {
     return 0;
   }
@@ -51,26 +49,30 @@ f.getTodaySpin = function (record) {
   // console.log("Start", start)
   // console.log("now",now)
   return moment(now).diff(moment(start), 'days');
+  // console.log(this.daysBetween(now, start));
+  // return this.daysBetween(now, start)
 }
 
 f.isSunday = function (date = new Date()) {
   return !(date.getDay() % 6);
 }
 
-f.nextSpinDate = function (record){
+f.nextSpinDate = function (record) {
+  // console.log(record)
   let now = new Date(Date.now());
-  now =  new Date( (new Date(now).toDateString()))
-  let hours = 1;
-  while (true) {
-    if(this.isSpinAvailable(record, new Date(now))) {
+  now = new Date((new Date(now).toDateString()))
+  // let days = 1;
+
+  for (let day = 0; day <= 44; day++) {
+    console.log("Test Next Date " + day, now);
+    // now.setDate(now.getDay() + 1);
+    now = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    // now.setMinutes(now.getMinutes() + 5);
+    if (this.isSpinAvailable(record, new Date(now))) {
       return now;
     }
-    now.setHours(now.getDay() + hours);
-    hours ++;
-    if(hours> 1500) {
-      return false;
-    }
   }
+  return false;
 }
 
 f.weekDays = function (fromDate, toDate) {
