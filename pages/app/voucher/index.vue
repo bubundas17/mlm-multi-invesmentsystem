@@ -36,7 +36,7 @@
     },
     data(){
       return {
-        amount: 5,
+        amount: 100,
         createVoucherLoading: false,
         vouchers: []
       }
