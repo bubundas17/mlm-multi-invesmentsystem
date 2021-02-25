@@ -54,7 +54,7 @@ f.getTodaySpin = function (record, now = new Date()) {
 }
 
 f.isSunday = function (date = new Date()) {
-  return !(date.getDay() % 6);
+  return date.getDay() == 0;
 }
 
 f.nextSpinDate = function (record) {
