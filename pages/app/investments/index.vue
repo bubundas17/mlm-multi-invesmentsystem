@@ -18,7 +18,7 @@
                 <h2 class="text-center py-3">{{ inv.amount }}</h2>
                 <span></span>
               </v-card-text>
-              <v-btn block class="ma-0 primary" flat :disabled="!inv.spinAvailable" @click="openDialog(inv._id)">{{ inv.spinAvailable ? "Spin" : "Next " +  fromNow(inv.nextSpin)  }}
+              <v-btn block class="ma-0 primary" flat :disabled="!inv.spinAvailable" @click="openDialog(inv._id)">{{ inv.spinAvailable ? "TRY Your Luck" : "Next " +  fromNow(inv.nextSpin)  }}
               </v-btn>
             </v-card>
           </v-flex>

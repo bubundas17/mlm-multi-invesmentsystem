@@ -17,7 +17,15 @@ router.get("/", authenticated, async (req,res) => {
 
 })
 
+router.post("/", authenticated, async (req, res) => {
+  let description = req.body.description;
+  let amount = req.body.amount;
+  try {
+    // let user = await User
+  } catch (e) {
 
+  }
+})
 
 router.get("/all", async (req, res) => {
   try {

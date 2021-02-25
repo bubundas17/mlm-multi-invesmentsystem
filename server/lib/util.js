@@ -62,7 +62,7 @@ f.nextSpinDate = function (record) {
   let now = new Date(Date.now());
   now = new Date((new Date(now).toDateString()))
   // let days = 1;
-
+  now.setMinutes(0, 1)
   for (let day = 0; day <= 44; day++) {
     console.log("Test Next Date " + day, now);
     // now.setDate(now.getDay() + 1);

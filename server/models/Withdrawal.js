@@ -9,10 +9,6 @@ let Schema = mongoose.Schema({
     type: Number,
     required: true
   },
-  txnType: {
-    type: String,
-    required: true
-  },
   description: {
     type: String,
     required: true
