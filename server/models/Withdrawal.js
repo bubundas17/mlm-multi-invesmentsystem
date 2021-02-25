@@ -13,6 +13,10 @@ let Schema = mongoose.Schema({
     type: String,
     required: true
   },
+  refunded: {
+    type: Boolean,
+    default: false
+  },
   status: {
     type: String,
     default: config.consts.WITHDRAWAL_STATUS_PROCESSING

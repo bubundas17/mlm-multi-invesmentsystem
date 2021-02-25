@@ -271,8 +271,8 @@ export default {
             nested: true,
             active: false,
             items: [
-              {title: 'Pending Requests', to: "/app/withdrawal-req/pending"},
-              {title: 'All Requests', to: "/app/withdrawal-req"},
+              {title: 'Pending Requests', to: "/app/withdrawal-req/"},
+              {title: 'All Requests', to: "/app/withdrawal-req/all"},
               // {title: 'Bulk Create', to: "/app/voucher/bulk"},
             ],
           },

@@ -28,7 +28,7 @@ export default {
   name: "index",
   layout: "dashboard",
   async asyncData({app}) {
-    let kycs = await  app.$axios.$get("/withdrawal/pending");
+    let kycs = await  app.$axios.$get("/withdrawal/all");
     return {
       withdrawals: kycs.withdrawal
     }
