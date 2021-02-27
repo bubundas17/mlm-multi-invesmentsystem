@@ -8,6 +8,7 @@ const authenticated = require('../../controllers/authenticated');
 const admin = require('../../controllers/adminOnly');
 const config = require("../../config");
 const fs = require('fs');
+const util = require("../../lib/util");
 
 function makeid(length) {
   var result = '';
@@ -71,19 +72,23 @@ router.post("/:id/accept", authenticated, admin, async (req, res) => {
 
   user.kycVerified = true;
   user.save();
-  if(user.referredBy) {
 
-    let RefUser = await User.findById(user.referredBy);
-    RefUser.balance = Number(RefUser.balance) + Number(config.referralBonus);
-    RefUser.save();
-    await Invoice.create({
-      title: "Referral Successful",
-      user: RefUser._id,
-      description: `Referral Bonus Credit For ${user.username}`,
-      txnType: config.consts.INVOICE_TYPE_CREDIT,
-      finalAmount: config.referralBonus
-    })
-  }
+  util.sendSMS(user.phone, `Hi, ${user.name}\n Good NEWS!\nYour KYC Verification is now completed.`)
+
+  // if(user.referredBy) {
+
+    // let RefUser = await User.findById(user.referredBy);
+    // RefUser.balance = Number(RefUser.balance) + Number(config.referralBonus);
+    // RefUser.save();
+    // await Invoice.create({
+    //   title: "Referral Successful",
+    //   user: RefUser._id,
+    //   description: `Referral Bonus Credit For ${user.username}`,
+    //   txnType: config.consts.INVOICE_TYPE_CREDIT,
+    //   finalAmount: config.referralBonus
+    // })
+  // }
+
   res.send({message: "OK"})
 });
 

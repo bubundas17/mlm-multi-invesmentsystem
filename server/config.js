@@ -25,6 +25,11 @@ module.exports = {
     SMTPHost: "evo.fastest-server.com",
     SMTPPort: 587
   },
+  byebye_sms: {
+    senderID: "TRUCLB",
+    apiKey: "26039593C11AEC",
+    routeid: 7
+  },
   razorpay: {
     key: "rzp_test_KJcjoHIWEsmVBD",
     key_secret: "8FXuj5unhhd2NKdSckfQ8IVL"

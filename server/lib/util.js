@@ -1,5 +1,8 @@
 let f = {}
 const moment = require('moment');
+const rp = require("request-promise")
+const config = require("../config")
+
 // Generates a array with given length with false value
 f.emptyArray = (length = 1, value = false) => {
   let arr = [];
@@ -16,6 +19,21 @@ f.daysBetween = function (date1, date2) {
 
   // Convert back to days and return
   return Math.round(differenceMs / ONE_DAY);
+}
+
+f.sendSMS = async function (number, text) {
+  // http://byebyesms.com/app/smsapi/index.php?key=26039593C11AEC&campaign=XXXXXX&routeid=XXXXXX&type=text&contacts=97656XXXXX,98012XXXXX&senderid=XXXXXX&msg=Hello+People%2C+have+a+great+day&time=2021-02-27+02%3A06
+  let req = await rp.post({
+    url: "http://byebyesms.com/app/smsapi/index.php",
+    formData: {
+      key: config.byebye_sms.apiKey,
+      routeid: config.byebye_sms.routeid,
+      type: "text",
+      contacts: number,
+      senderid: config.byebye_sms.senderID,
+      msg: text
+    }
+  })
 }
 
 f.isSpinAvailable = function (record, now = new Date(Date.now())) {

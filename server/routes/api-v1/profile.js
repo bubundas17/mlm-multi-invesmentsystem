@@ -6,6 +6,7 @@ const config = require("../../config");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const util = require("../../lib/util");
 
 
 router.get("/", authenticated, async (req, res) => {
@@ -27,6 +28,9 @@ router.get("/verify", async (req, res) => {
         emailVerified: true
       }
     });
+
+    util.sendSMS(user.phone, `Hi, ${user.name}\n Your email (${user.email}) is now Verified.`)
+
     res.send(`
         <h1>Email Verification Completed!</h1>
         <p>Redirecting you in 1 sec...</p>
@@ -74,6 +78,8 @@ router.post("/change-pass", authenticated, async (req, res) => {
     let hashedpass = bcrypt.hashSync(newpass, 10);
     try {
       await User.findByIdAndUpdate(req.user._id, {$set: { password: hashedpass }});
+      util.sendSMS(userData.phone, `Hi, ${userData.name}\n Your The Truth Club Account's Password has been changed. If you didn't did it, Contact support as soon as possible.`)
+
       res.send({message: "OK"})
     } catch (e) {
       console.log(e)

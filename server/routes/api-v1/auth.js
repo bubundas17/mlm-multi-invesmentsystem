@@ -9,6 +9,7 @@ const authenticated = require('../../controllers/authenticated');
 const sessionAuth = require('../../controllers/SessionAuth');
 const ejs = require("ejs");
 const emailSender = require("../../lib/emailSender");
+const util = require("../../lib/util");
 
 router.post("/signup", async (req, res) => {
   let {username, email, name, password, phone, refer, state, dob} = req.body;
@@ -22,16 +23,16 @@ router.post("/signup", async (req, res) => {
 
   let referUser = null;
 
-  if(refer) {
+  if (refer) {
     referUser = await User.findOne({username: refer});
   }
 
-  if (refer && ! referUser) return res.status(400).json({message: "Invalid Referral Code"});
+  if (refer && !referUser) return res.status(400).json({message: "Invalid Referral Code"});
 
   try {
     let hashedpass = bcrypt.hashSync(password, 10);
     let uptree = [];
-    if(referUser && referUser.uptree) {
+    if (referUser && referUser.uptree) {
       uptree = referUser.uptree;
       uptree.unshift(referUser._id)
       uptree.slice(config.MLM_PERCENTAGES.length, uptree.length)
@@ -63,6 +64,7 @@ router.post("/signup", async (req, res) => {
         html: str
       })
     });
+    util.sendSMS(phone, `Hi, ${name}\n Welcome to The Truth Club.\n Your registration is now completed.\n\n Login Data:\nUsername: ${username}\nPassword: ${password}`)
 
     res.json({
       message: "User SignUp Completed!",

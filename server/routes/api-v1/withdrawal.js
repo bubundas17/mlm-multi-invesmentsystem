@@ -6,6 +6,7 @@ const WithdrawalDB = require("../../models/Withdrawal");
 const InvoiceDb = require("../../models/Invoice");
 const UserDB = require("../../models/User");
 const config = require("../../config");
+const util = require("../../lib/util");
 
 
 router.get("/", authenticated, async (req, res) => {
@@ -104,6 +105,7 @@ router.post("/:id/completed", async (req, res) => {
 
   try {
     await WithdrawalDB.findByIdAndUpdate(req.params.id, {status: config.consts.WITHDRAWAL_STATUS_COMPLETED})
+    // util.sendSMS(userData.phone, `Hi, ${userData.name}\n Your The Truth Club Account's Password has been changed. If you didn't did it, Contact support as soon as possible.`)
     res.send({message: "Success"})
   } catch (e) {
     res.status(500).send({message: "Success"})
