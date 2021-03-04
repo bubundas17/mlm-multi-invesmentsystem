@@ -39,6 +39,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "uuid": "^3.4.0",
+    "v-jsoneditor": "^1.4.2",
     "validator": "^12.1.0",
     "vue-fortune-wheel-extended": "^0.2.7",
     "yarn": "^1.21.1"

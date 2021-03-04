@@ -1,0 +1,34 @@
+{
+  "newUserBonus": 0,
+  "referralBonus": 0,
+  "TOTAL_WHEEL_SUM": 130,
+  "MLM_PERCENTAGES": [
+    7,
+    2.5,
+    2.5,
+    2.5,
+    2.5,
+    2.5,
+    2.5,
+    2.5,
+    2.5,
+    2.5
+  ],
+  "MLM_MAXREFER_EARNING_MULTIPLAYER": 5,
+  "mail": {
+    "from": "\"The Truth Club\" <noreply@thetruthclub.in>",
+    "pass": "#9GmkSEaq64C",
+    "SMTPUsername": "noreply@thetruthclub.in",
+    "SMTPHost": "pro.fastest-server.com",
+    "SMTPPort": 587
+  },
+  "byebye_sms": {
+    "senderID": "TRUCLB",
+    "apiKey": "26039593C11AEC",
+    "routeid": 7
+  },
+  "razorpay": {
+    "key": "rzp_test_KJcjoHIWEsmVBD",
+    "key_secret": "8FXuj5unhhd2NKdSckfQ8IVL"
+  }
+}

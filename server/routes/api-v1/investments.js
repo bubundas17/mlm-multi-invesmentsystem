@@ -113,7 +113,7 @@ router.post("/buy", authenticated, async (req, res) => {
         user: req.user._id,
         amount: paymentres.amount / 100,
         completedSpins: util.emptyArray(42),
-        spins: numberListGenerator(config.WEEL_NUMBERS, 42, 140),
+        spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
         status: config.consts.PACKAGE_STATUS_ACTIVE,
         startDate: startDay,
         endDate: stopDay
@@ -209,7 +209,7 @@ router.post("/redeem", async (req, res) => {
       user: req.user._id,
       amount: voucherdata.amount,
       completedSpins: util.emptyArray(42),
-      spins: numberListGenerator(config.WEEL_NUMBERS, 42, 140),
+      spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
       status: config.consts.PACKAGE_STATUS_ACTIVE,
       startDate: startDay,
       endDate: stopDay

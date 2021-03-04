@@ -1,4 +1,5 @@
 require('dotenv').config();
+const configEditable = require("./config-editable.json")
 module.exports = {
   siteUrl: "https://amplecoin.in",
   db: {
@@ -16,6 +17,7 @@ module.exports = {
   // Lavel as follows: Lavel 1, lavel 2, lavel 3 ... lavel 10
   MLM_PERCENTAGES: [7, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
   WEEL_NUMBERS: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  TOTAL_WHEEL_SUM: 140,
   MLM_MAXREFER_EARNING_MULTIPLAYER: 5,
 
   mail: {
@@ -67,5 +69,6 @@ module.exports = {
     email: "",
     copyright: "",
     hostName: ""
-  }
+  },
+  ...configEditable
 };

@@ -276,6 +276,11 @@ export default {
               // {title: 'Bulk Create', to: "/app/voucher/bulk"},
             ],
           },
+          {
+            action: 'mdi-cog',
+            title: 'Settings',
+            to: "/app/settings"
+          },
         ]]
       }
 

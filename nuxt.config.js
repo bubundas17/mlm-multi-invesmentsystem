@@ -5,6 +5,7 @@ module.exports = {
   /*
   ** Headers of the page
   */
+
   head: {
     titleTemplate: '%s - ' + "The Truth Club",
     title: "The Truth Club" || '',
@@ -35,7 +36,7 @@ module.exports = {
     "@plugins/alerts",
     "@plugins/axios",
     "@plugins/mixins",
-    // {src: "@plugins/loginRedirector", ssr: false},
+    // {src: "@plugins/json-editor", ssr: true},
   ],
   /*
   ** Nuxt.js dev-modules
