@@ -169,7 +169,7 @@ export default {
           active: false,
           items: [
             {title: 'All', to: "/app/investments"},
-            {title: 'Order New', to: "/app/investments/new"},
+            {title: 'Donate New', to: "/app/investments/new"},
             {title: 'Redeem', to: "/app/investments/redeem"},
             // {title: 'Recharge', to: "/app/wallet/recharge"},
             // {title: 'Redeem', to: "/app/wallet/redeem"},

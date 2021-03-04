@@ -19,10 +19,10 @@ module.exports = {
   MLM_MAXREFER_EARNING_MULTIPLAYER: 5,
 
   mail: {
-    from: "\"AmpleCoin\" <noreply@amplecoin.in>",
-    pass: "X5Mb2DP!0NI5",
-    SMTPUsername: "noreply@amplecoin.in",
-    SMTPHost: "evo.fastest-server.com",
+    from: "\"The Truth Club\" <noreply@thetruthclub.in>",
+    pass: "#9GmkSEaq64C",
+    SMTPUsername: "noreply@thetruthclub.in",
+    SMTPHost: "pro.fastest-server.com",
     SMTPPort: 587
   },
   byebye_sms: {
@@ -35,6 +35,8 @@ module.exports = {
     key_secret: "8FXuj5unhhd2NKdSckfQ8IVL"
   },
   consts: {
+    OTP_STATUS_VALID: "VALID",
+    OTP_STATUS_USED: "USED",
     VOUCHER_ACTIVE: "ACTIVE",
     VOUCHER_BLACKLISTED: "BLACKLISTED",
     VOUCHER_USED: "USED",

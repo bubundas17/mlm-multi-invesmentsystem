@@ -36,6 +36,11 @@ f.sendSMS = async function (number, text) {
   })
 }
 
+f.randomInt = function(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 f.isSpinAvailable = function (record, now = new Date(Date.now())) {
   // let now = new Date(Date.now());
   // console.log("Stt", record.startDate)

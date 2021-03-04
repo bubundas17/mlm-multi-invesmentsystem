@@ -10,6 +10,8 @@ const sessionAuth = require('../../controllers/SessionAuth');
 const ejs = require("ejs");
 const emailSender = require("../../lib/emailSender");
 const util = require("../../lib/util");
+const Otp = require("../../models/Otp")
+
 
 router.post("/signup", async (req, res) => {
   let {username, email, name, password, phone, refer, state, dob} = req.body;
@@ -185,6 +187,59 @@ router.post("/login", async (req, res) => {
     res.status(401).send({message: "Unauthorized"})
   }
 });
+
+router.post("/forgot-pass", async (req, res) => {
+  let username = req.body.username;
+  try {
+    let user = await User.findOne({username: username})
+    if (!user) return res.status(404).send({message: "User Not Found."})
+    let OTP = util.randomInt(10000, 99999)
+    await Otp.create({
+      user: user._id,
+      otp: OTP + "",
+    })
+    await util.sendSMS(user.phone, `Hi, ${user.username}\n ${OTP} is your OTP for password reset.`)
+    ejs.renderFile(__dirname + "/../../templates/email/OTP.ejs", {
+      otp: OTP,
+      title: "OTP for Password Reset"
+    }, async (err, str) => {
+      await emailSender({
+        subject: "OTP For Password Reset",
+        to: user.email,
+        html: str
+      })
+    });
+    res.send({message: "OTP sent to email and phone"})
+  } catch (e) {
+    console.log(e)
+    return res.status(404).send({message: "User Not Found."})
+  }
+})
+
+router.post("/reset", async (req, res) => {
+  let username = req.body.username;
+  let otp = req.body.otp;
+  otp = otp + ""
+  otp = otp.trim();
+  let newpass = req.body.newpass;
+  let hashedpass = bcrypt.hashSync(newpass, 10);
+  try {
+    let user = await User.findOne({username: username})
+    let otpgot = await Otp.findOne({user: user._id, status: config.consts.OTP_STATUS_VALID, otp: otp})
+    if (otpgot) {
+      // OTP validated
+      await Otp.remove({user: user._id})
+      await User.findByIdAndUpdate(user._id, {$set: {password: hashedpass}})
+      return res.send({message: "Password Updated"})
+    }
+    return res.status(401).send({message: "Invalid OTP or User Not Found."})
+  } catch (e) {
+    console.log(e)
+    return res.status(401).send({message: "Invalid OTP or User Not Found."})
+  }
+
+})
+
 
 router.get("/logout", (req, res) => {
   req.session.destroy();

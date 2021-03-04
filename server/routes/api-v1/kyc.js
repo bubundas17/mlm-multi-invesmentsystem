@@ -73,7 +73,7 @@ router.post("/:id/accept", authenticated, admin, async (req, res) => {
   user.kycVerified = true;
   user.save();
 
-  util.sendSMS(user.phone, `Hi, ${user.name}\n Good NEWS!\nYour KYC Verification is now completed.`)
+  // util.sendSMS(user.phone, `Hi, ${user.name}\n Good NEWS!\nYour KYC Verification is now completed.`)
 
   // if(user.referredBy) {
 

@@ -18,6 +18,10 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
+          <v-btn text color="orange darken-2" to="/auth/forgot-pass">
+            <v-icon left>mdi-lock-question</v-icon>
+            Forgot?
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn text color="info" to="/auth/signup">
             <v-icon left>mdi-account-plus-outline</v-icon>
