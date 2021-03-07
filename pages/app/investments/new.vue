@@ -67,6 +67,8 @@ export default {
     // razorpay_payment_id: "pay_GXxK3sGeaGiX7E"
     // __proto__: Object
     async pay() {
+
+      if (!this.user.isActive) return this.showAlert("error", "Complete your KYC First.")
       if (this.amount < this.min) return this.showAlert("error", "Minimum Amount is 200 INR")
       if (this.amount > this.max) return this.showAlert("error", "Maximum Amount is 5000 INR")
       if(!this.canInvest) return this.showAlert("error", "You cannot Invest More Right Now.")
@@ -74,9 +76,9 @@ export default {
         key: "rzp_test_KJcjoHIWEsmVBD",
         amount: this.rPayAmount,
         currency: 'INR',
-        name: "Acme Corp",
+        name: "The Truth Club",
 
-        description: "Payment Dbuescription ",
+        description: "Payment Description",
         // order_id: 'sadsad',
         prefill: {
           name: this.user.name,

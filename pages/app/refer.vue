@@ -56,6 +56,8 @@
               <v-btn
                 color="primary"
                 dark
+                :loading="transferLoading"
+                :disabled="transferLoading"
                 @click="openTransferDialog"
               >
                 Transfer To Wallet
@@ -139,6 +141,7 @@ export default {
       dialog: false,
       lavels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       lavel: 1,
+      transferLoading: false,
       headers: [
         {
           text: 'Name',
@@ -173,15 +176,25 @@ export default {
     }
   },
   methods: {
-    openTransferDialog(){
+    async openTransferDialog() {
       console.log("on openTransferDialog")
       this.lavel = 1;
       let refs = this.currentRefList;
       let active = refs.filter(ref => ref.isActive)
       // console.log(active)
-      if(active.length < 3) {
+      if (active.length < 3) {
         this.showAlert("error", "You need at lest 3 Active Users in Level 1 to transfer to wallet")
+        return
       }
+      if (this.user.refBalance < 10) {
+        this.showAlert("error", "At least 10INR needed to transfer.")
+        return
+      }
+      this.transferLoading = true;
+      await this.$axios.$post("/refer/transfer")
+      this.transferLoading = false;
+      this.$store.dispatch("refreshUser");
+      this.showAlert("success", "All funds transferred to main wallet.")
     }
   }
 
