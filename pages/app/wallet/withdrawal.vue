@@ -85,7 +85,7 @@
           </v-form>
         </template>
         <p>
-          FEES: {{ (amount * 0.10).toFixed(0) }} INR
+          Admin Fees : {{ (amount * 0.10).toFixed(0) }} INR
         </p>
         <p>
           YOU'll GET: {{ amount - (amount * 0.10).toFixed(0) }} INR
