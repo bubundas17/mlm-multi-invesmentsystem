@@ -106,7 +106,7 @@ export default {
   layout: "dashboard",
   data() {
     return {
-      min: 100,
+      min: 200,
 
       items: [
         "UPI",
@@ -137,12 +137,12 @@ export default {
       ],
       amountRules: [
         v => !!v || 'Amount Is Required',
-        v => v >= this.min || 'Minimum Withdrawal 100 INR',
+        v => v >= this.min || 'Minimum Withdrawal 200 INR',
         v => v <= this.user.balance || 'Not Enough Balance',
       ],
 
       paymentMode: "UPI",
-      amount: 100
+      amount: 200
     }
   },
   methods: {
