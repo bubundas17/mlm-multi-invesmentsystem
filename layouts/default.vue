@@ -84,6 +84,32 @@
         >
           Trams And Condition
         </v-btn>
+        <v-btn
+          color="white"
+          text
+          rounded
+          to="/contact"
+          class="my-2"
+        >
+          Contact Us
+        </v-btn>
+        <v-btn
+          color="white"
+          text
+          rounded
+          to="/about"
+          class="my-2"
+        >
+          About Us
+        </v-btn>        <v-btn
+          color="white"
+          text
+          rounded
+          to="/refund"
+          class="my-2"
+        >
+          Refund and Cancellation Policy
+        </v-btn>        
         <v-col
           class="primary lighten-2 py-4 text-center white--text"
           cols="12"
