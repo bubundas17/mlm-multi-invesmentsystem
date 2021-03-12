@@ -63,7 +63,7 @@
 
     </v-flex>
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 red profile-bg">
+      <v-card class="ma-2 red wallet-bggg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Total Referral Earning</span><br>
@@ -72,7 +72,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 teal wallet-bg">
+      <v-card class="ma-2 teal wallet-bgg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Refer Balance</span><br>
@@ -81,7 +81,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12 >
-      <v-card class="ma-2 red profile-bg">
+      <v-card class="ma-2 red profile-bgma">
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Max Allowed Refer</span><br>
@@ -90,7 +90,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 teal wallet-bg">
+      <v-card class="ma-2 teal walle-bggggg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">All Completed Refer</span><br>
@@ -99,7 +99,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 teal wallet-bg">
+      <v-card class="ma-2 teal walle-bgggg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Pending Refer</span><br>
@@ -108,7 +108,7 @@
       </v-card>
     </v-flex>
     <v-flex xs12>
-      <v-card class="ma-2 teal wallet-bg">
+      <v-card class="ma-2 teal wallet-bgggg">
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Total Referred</span><br>
@@ -168,10 +168,44 @@ export default {
   background-size: cover;
   background-image: url("/images/username-bg.jpg");
 }
+
+.profile-bgma{
+  background-size: cover;
+  background-image: url("/images/manr.jpg");
+}
+
 .wallet-bg{
   background-size: cover;
   background-image: url("/images/wallet.jpg");
 }
+
+.wallet-bgg{
+  background-size: cover;
+  background-image: url("/images/tre.jpg");
+}
+
+.wallet-bggg{
+  background-size: cover;
+  background-image: url("/images/ref.jpg");
+}
+
+.wallet-bgggg{
+  background-size: cover;
+  background-image: url("/images/refer112.jpg");
+}
+
+.walle-bgggg{
+  background-size: cover;
+  background-image: url("/images/acr.jpg");
+}
+
+.walle-bggggg{
+  background-size: cover;
+  background-image: url("/images/lcr.jpg");
+}
+
+
+
 .app-grid {
   /*float: left;*/
   text-align: center;
