@@ -24,16 +24,20 @@
     </v-flex>
 
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 red">
+      <v-card class="ma-2 red profile-bg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">Username : {{ user.username }} </div>
+          <div class="display-1 white--text text-left px-6">
+          <span class="headline">Username</span><br>
+          {{ user.username }} </div>
         </v-responsive>
       </v-card>
     </v-flex>
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 teal">
+      <v-card class="ma-2 teal wallet-bg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">Balance : {{ Number(user.balance).toFixed(2) }} INR </div>
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Wallet</span><br>
+            {{ Number(user.balance).toFixed(2) }} INR </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -58,7 +62,60 @@
       </div>
 
     </v-flex>
-
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2 red profile-bg">
+        <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Total Referral Earning</span><br>
+            {{ Number(user.totalRefBonus).toFixed(2) }} INR </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2 teal wallet-bg">
+        <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Refer Balance</span><br>
+            {{ Number(user.refBalance).toFixed(2) }} INR </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 >
+      <v-card class="ma-2 red profile-bg">
+        <v-responsive aspect-ratio="8" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Max Allowed Refer</span><br>
+            {{ Number(user.maxRefBonus).toFixed(2) }} INR </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2 teal wallet-bg">
+        <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">All Completed Refer</span><br>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ allCompleted }} </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2 teal wallet-bg">
+        <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Pending Refer</span><br>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ ref.pending }} </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
+    <v-flex xs12>
+      <v-card class="ma-2 teal wallet-bg">
+        <v-responsive aspect-ratio="8" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Total Referred</span><br>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ ref.total }} </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -67,9 +124,10 @@ export default {
   name: "index",
   layout: "dashboard",
   async asyncData({app}) {
-    let licenses = await app.$axios.$get("/");
+    let ref = await app.$axios.$get("/refer");
+
     return {
-      licenses: licenses.licenseCount || 0
+      ref
     }
   },
   data() {
@@ -94,11 +152,26 @@ export default {
         this.showAlert("error", "Failed to send verify mail.");
       })
     }
+  },
+  computed: {
+    allCompleted(){
+      console.log(this.ref)
+      return this.ref.completed
+    }
   }
 }
 </script>
 
 <style scoped>
+
+.profile-bg{
+  background-size: cover;
+  background-image: url("/images/username-bg.jpg");
+}
+.wallet-bg{
+  background-size: cover;
+  background-image: url("/images/wallet.jpg");
+}
 .app-grid {
   /*float: left;*/
   text-align: center;
