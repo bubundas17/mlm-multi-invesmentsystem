@@ -24,16 +24,16 @@
     </v-flex>
 
     <v-flex xs12 sm12 md6>
-      <v-card class="ma-2 green">
+      <v-card class="ma-2 red">
         <v-responsive aspect-ratio="2.5" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">Your Username: {{ user.username }}</div>
+          <div class="display-1 white--text text-center">Your Username : {{ user.username }} </div>
         </v-responsive>
       </v-card>
     </v-flex>
     <v-flex xs12 sm12 md6>
       <v-card class="ma-2 teal">
         <v-responsive aspect-ratio="2.5" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">Wallet: {{ Number(user.balance).toFixed(2) }} INR</div>
+          <div class="display-1 white--text text-center">Wallet Balance : {{ Number(user.balance).toFixed(2) }} INR </div>
         </v-responsive>
       </v-card>
     </v-flex>
