@@ -33,7 +33,7 @@
     <v-flex xs12 sm12 md6>
       <v-card class="ma-2 teal">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
-          <div class="display-1 white--text text-center">WBalance : {{ Number(user.balance).toFixed(2) }} INR </div>
+          <div class="display-1 white--text text-center">Balance : {{ Number(user.balance).toFixed(2) }} INR </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -83,7 +83,6 @@ export default {
         {icon: "mdi-atom-variant", name: "Spins", to: "/app/investments"},
         {icon: "mdi-wallet-giftcard", name: "Redeem", to: "/app/investments/redeem"},
         {icon: "mdi-view-list", name: "Transactions", to: "/app/invoice"},
-        {icon: "mdi-face-agent", name: "Support", to: "/app/support"},
       ]
     }
   },

@@ -303,7 +303,7 @@ export default {
 
 <style>
 .theme--light.v-application {
-  background-color: #f5f5f5 !important;
+  background-color: #222222 !important;
 }
 
 .floating-title {
