@@ -82,7 +82,7 @@ export default {
         {icon: "mdi-gift-outline", name: "Donate", to: "/app/investments/new"},
         {icon: "mdi-atom-variant", name: "Spins", to: "/app/investments"},
         {icon: "mdi-wallet-giftcard", name: "Redeem", to: "/app/investments/redeem"},
-        {icon: "mdi-view-list", name: "Translations", to: "/app/invoice"},
+        {icon: "mdi-view-list", name: "Transactions", to: "/app/invoice"},
         {icon: "mdi-face-agent", name: "Support", to: "/app/support"},
       ]
     }
