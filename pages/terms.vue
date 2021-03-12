@@ -2,11 +2,16 @@
   <v-layout
     column
   >
-    <top-hero/>
-    <!-- full block-->
-    <v-container>
-      <h2>Terms And Conditions</h2>
-      <div class="col">
+<!--    <top-hero/>-->
+    <div>
+      <v-container>
+        <div class="full col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2>Terms And Conditions</h2>
+
+
+          <h5>Last Updated: April 19, 2020</h5>
+          <hr>
+          <div class="col">
         <p>l. To do such other things/acts/activates, which are, necessary and which may</p>
         <p>be incidental or conducive to the attainment of any of the object Trust.</p>
         <p>li. To activities and the branches shall spread all over in India , where the trust</p>
@@ -20,7 +25,7 @@
         <p>of cast, creed and Religion.</p>
         <p>liv. To carry on all such other lawful activities as are incidental or conducive to</p>
         <p>the attainment of the above objects</p>
-        <p>(2) The founder & Trustees shall appoint any employee i.e. Manager, supervisor,</p>
+        <p>(2) The founder and Trustees shall appoint any employee i.e. Manager, supervisor,</p>
         <p>legal advisor and legal assistant, accountant, cashier, peon, gatekeeper etc. They</p>
         <p>also have the powers to terminate the services of any staff as he may deem fit</p>
         <p>and proper for the benefit of the Trust.</p>
@@ -100,13 +105,18 @@
         <p>or connected with the Trust property as may be deemed</p>
         <p>necessary.</p>
         <p>xv. To appoint/nominate patrons and to give such other designations</p>
-        <p>to various persons extending help for the running or for the case</p>
-        <p>of the Trust.</p>
-        <p>xvi. And generally to do all acts, deeds and things as may be</p>
-        <p>necessary for administration of the Trust.</p>
-        <p>```: 6: about section info;```</p>
+        <p>to various persons extending help for the running or for the case of the Trust.</p>
+        <p>xvi. And generally to do all acts, deeds and things as may be
+        necessary for administration of the Trust.</p>
+    
       </div>
-    </v-container>
+
+          
+
+        </div>
+      </v-container>
+
+    </div>
   </v-layout>
 </template>
 
@@ -123,3 +133,5 @@
     }
   }
 </script>
+
+
