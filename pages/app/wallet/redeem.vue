@@ -1,5 +1,5 @@
 <template>
-  <v-layout column wrap>
+  <v-layout column wrap class="secondary ">
     <v-card class="ma-2">
       <v-card-title class="secondary white--text">Redeem Code</v-card-title>
       <v-card-text>

@@ -133,7 +133,7 @@ export default {
       ],
       ifscRules: [
         v => !!v || 'IFSC is required',
-        // v => /^[\w.-]+@[\w.-]+$/.test(v) || 'UPI ID must be valid',
+        v => /^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/g.test(v) || 'Enter Valid IFSC Code',
       ],
       amountRules: [
         v => !!v || 'Amount Is Required',
@@ -161,6 +161,9 @@ export default {
           amount: this.amount,
           description: description
         })
+        await this.$store.dispatch("refreshUser");
+        this.showAlert("success", "Withdrawal Req Submitted!")
+        this.$router.push("/app/")
       } catch (e) {
         console.log(e);
       }
