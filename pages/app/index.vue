@@ -138,7 +138,7 @@ export default {
         {icon: "mdi-cash-multiple", name: "Withdrawal", to: "/app/wallet/withdrawal"},
         {icon: "mdi-share-all", name: "Refer & earn", to: "/app/refer"},
         {icon: "mdi-gift-outline", name: "Donate", to: "/app/investments/new"},
-        {icon: "mdi-atom-variant", name: "Spins", to: "/app/investments"},
+        {icon: "mdi-atom-variant", name: "Wheel Of Luck", to: "/app/investments"},
         {icon: "mdi-wallet-giftcard", name: "Redeem", to: "/app/investments/redeem"},
         {icon: "mdi-view-list", name: "Transactions", to: "/app/invoice"},
       ]
