@@ -1,6 +1,21 @@
 <template>
   <v-layout row wrap class="ma-2">
 
+    <v-dialog v-model="settings.popup.enabled" persistent>
+      <v-card>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn @click="settings.popup.enabled = false" color="secondary" icon><v-icon>mdi-close</v-icon></v-btn>
+        </v-card-actions>
+        <v-card-text>
+          <span>
+            <pre class="display-2">{{ settings.popup.text }}</pre>
+
+          </span>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+
     <v-flex xs12 v-if="!user.emailVerified">
       <v-alert type="error" prominent>
         <v-row align="center">
@@ -27,8 +42,9 @@
       <v-card class="ma-2 red profile-bg">
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
-          <span class="headline">Username</span><br>
-          {{ user.username }} </div>
+            <span class="headline">Username</span><br>
+            {{ user.username }}
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -37,7 +53,8 @@
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Wallet</span><br>
-            {{ Number(user.balance).toFixed(2) }} INR </div>
+            {{ Number(user.balance).toFixed(2) }} INR
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -47,9 +64,9 @@
       <div class="d-flex justify-center">
         <div class="text-center">
           <v-layout class="ma-2 app-grid" v-for="i in apps" :key="i.to">
-            <nuxt-link :to="i.to" >
+            <nuxt-link :to="i.to">
               <div class="app-item deep-purple darken-2 white--text">
-                <v-icon style="font-size: 70px"  color="white" class="mt-6">{{ i.icon }}</v-icon>
+                <v-icon style="font-size: 70px" color="white" class="mt-6">{{ i.icon }}</v-icon>
                 <br>
                 <h3 class="mt-3">
                   {{ i.name }}
@@ -67,7 +84,8 @@
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Total Referral Earning</span><br>
-            {{ Number(user.totalRefBonus).toFixed(2) }} INR </div>
+            {{ Number(user.totalRefBonus).toFixed(2) }} INR
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -76,16 +94,18 @@
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Refer Balance</span><br>
-            {{ Number(user.refBalance).toFixed(2) }} INR </div>
+            {{ Number(user.refBalance).toFixed(2) }} INR
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
-    <v-flex xs12 >
+    <v-flex xs12>
       <v-card class="ma-2 red profile-bg">
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Max Allowed Refer</span><br>
-            {{ Number(user.maxRefBonus).toFixed(2) }} INR </div>
+            {{ Number(user.maxRefBonus).toFixed(2) }} INR
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -94,7 +114,9 @@
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">All Completed Refer</span><br>
-            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ allCompleted }} </div>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>
+            {{ allCompleted }}
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -103,7 +125,9 @@
         <v-responsive aspect-ratio="4" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Pending Refer</span><br>
-            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ ref.pending }} </div>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>
+            {{ ref.pending }}
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -112,7 +136,9 @@
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Total Referred</span><br>
-            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>{{ ref.total }} </div>
+            <v-icon color="white" large left class="mt-n1">mdi-account</v-icon>
+            {{ ref.total }}
+          </div>
         </v-responsive>
       </v-card>
     </v-flex>
@@ -125,13 +151,39 @@ export default {
   layout: "dashboard",
   async asyncData({app}) {
     let ref = await app.$axios.$get("/refer");
+    let settings = await app.$axios.$get("/settings/other")
 
     return {
-      ref
+      ref,
+      settings
     }
   },
   data() {
     return {
+      settings: {
+        popup: {
+          enabled: false,
+          text: ""
+        },
+        promotion: {
+          bonus: "",
+          future: ""
+        },
+        zodiac: {
+          aries: "",
+          taurus: "",
+          gemini: "",
+          cancer: "",
+          leo: "",
+          virgo: "",
+          libra: "",
+          scorpio: "",
+          sagittarius: "",
+          capricorn: "",
+          aquarius: "",
+          pisces: "",
+        }
+      },
       apps: [
         {icon: "mdi-account-circle", name: "Account", to: "/profile"},
         {icon: "mdi-wallet", name: "Wallet", to: "/app/wallet"},
@@ -154,7 +206,7 @@ export default {
     }
   },
   computed: {
-    allCompleted(){
+    allCompleted() {
       console.log(this.ref)
       return this.ref.completed
     }
@@ -164,14 +216,16 @@ export default {
 
 <style scoped>
 
-.profile-bg{
+.profile-bg {
   background-size: cover;
   background-image: url("/images/username-bg.jpg");
 }
-.wallet-bg{
+
+.wallet-bg {
   background-size: cover;
   background-image: url("/images/wallet.jpg");
 }
+
 .app-grid {
   /*float: left;*/
   text-align: center;
@@ -189,7 +243,8 @@ export default {
   box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
 }
-a{
+
+a {
   text-decoration: none;
 }
 </style>

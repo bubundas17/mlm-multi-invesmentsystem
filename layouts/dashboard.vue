@@ -81,7 +81,10 @@
     </v-app-bar>
     <v-content>
       <alerts></alerts>
-      <nuxt/>
+      <div class="pure-dark-bg">
+        <nuxt/>
+
+      </div>
 
     </v-content>
     <v-footer class="grey lighten-3" app>
@@ -209,6 +212,18 @@ export default {
           nested: false,
           to: "/app/support"
         },
+        {
+          action: 'mdi-party-popper',
+          title: 'Bonus',
+          nested: false,
+          to: "/app/bonus"
+        },
+        {
+          action: 'mdi-rocket-launch-outline',
+          title: 'Future Plans',
+          nested: false,
+          to: "/app/future-plans"
+        },
       ];
 
       if (this.user.admin) {
@@ -281,6 +296,11 @@ export default {
             title: 'Settings',
             to: "/app/settings"
           },
+          {
+            action: 'mdi-cog',
+            title: 'Other Settings',
+            to: "/app/other-settings"
+          },
         ]]
       }
 
@@ -302,8 +322,9 @@ export default {
 </script>
 
 <style>
-.theme--light.v-application {
+.pure-dark-bg {
   background-color: #222222 !important;
+  min-height: 100vh;
 }
 
 .floating-title {

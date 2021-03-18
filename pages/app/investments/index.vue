@@ -57,9 +57,15 @@
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-card-actions>
+          <v-layout class=" px-5  py-3 align-center">
+            <img :src="this.zodiacSign" width="50px" class="ma-2">
+            <span class="title">{{ text }}</span>
+          </v-layout>
           <v-card-text class="headline text-center">
             Congratulations! Your Wining Is: {{ earned.percentage }}%! Your Luck Earned You {{ earned.creditAmount }}
             INR.
+            <br>
+
           </v-card-text>
         </v-card>
       </v-dialog>
@@ -106,7 +112,8 @@ export default {
   layout: "dashboard",
   async asyncData({app}) {
     let data = await app.$axios.$get("/investments")
-    return {investments: data.investments}
+    let settings = await app.$axios.$get("/settings/other")
+    return {investments: data.investments, settings}
   },
   filters: {
     expires(val) {
@@ -119,7 +126,36 @@ export default {
       resultsDialog: false,
       earned: 0,
       resultsError: "",
-      investmentId: ""
+      investmentId: "",
+      settings: {
+        popup: {
+          enabled: false,
+          text: ""
+        },
+        promotion: {
+          bonus: "",
+          future: ""
+        },
+        zodiac: {
+          aries: "",
+          taurus: "",
+          gemini: "",
+          cancer: "",
+          leo: "",
+          virgo: "",
+          libra: "",
+          scorpio: "",
+          sagittarius: "",
+          capricorn: "",
+          aquarius: "",
+          pisces: "",
+        }
+      }
+    }
+  },
+  computed: {
+    text() {
+      return this.settings.zodiac[this.zodiac]
     }
   },
   methods: {
@@ -160,10 +196,12 @@ export default {
   height: 200px;
   width: 200px;
 }
-.bg{
+
+.bg {
   background-image: url("/images/spin-list-bg.jpg");
   background-size: cover;
 }
+
 .wheel-bg {
   background-image: url("/images/wheel.jpg");
   background-size: cover;
