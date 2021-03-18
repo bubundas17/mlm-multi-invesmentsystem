@@ -99,9 +99,13 @@
         </v-responsive>
       </v-card>
     </v-flex>
-
+<<<<<<< HEAD
+    <v-flex xs12>
+      <v-card class="ma-2 red profile-bg">
+=======
     <v-flex xs12 >
       <v-card class="ma-2 red profile-bgma">
+>>>>>>> 9806abd1397a963eb2d47fcc5e1bdfe8a4c4fe3c
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
             <span class="headline">Max Allowed Refer</span><br>
@@ -222,16 +226,22 @@ export default {
   background-image: url("/images/username-bg.jpg");
 }
 
+<<<<<<< HEAD
+.wallet-bg {
+=======
 .profile-bgma{
   background-size: cover;
   background-image: url("/images/manr.jpg");
 }
 
 .wallet-bg{
+>>>>>>> 9806abd1397a963eb2d47fcc5e1bdfe8a4c4fe3c
   background-size: cover;
   background-image: url("/images/wallet.jpg");
 }
 
+<<<<<<< HEAD
+=======
 .wallet-bgg{
   background-size: cover;
   background-image: url("/images/tre.jpg");
@@ -258,6 +268,8 @@ export default {
 }
 
 
+
+>>>>>>> 9806abd1397a963eb2d47fcc5e1bdfe8a4c4fe3c
 .app-grid {
   /*float: left;*/
   text-align: center;
