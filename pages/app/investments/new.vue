@@ -1,6 +1,6 @@
 <template>
   <v-layout column style="height: 100%" class="grey darken-4 justify-center align-center">
-    <v-card class="ma-2 mt-12" min-width="500px">
+    <v-card class="ma-2 mt-12"  min-width="300px" width="500px">
       <v-card-title class="secondary white--text floating-title">
         New Give Help Plan
       </v-card-title>

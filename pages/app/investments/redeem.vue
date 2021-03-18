@@ -1,6 +1,6 @@
 <template>
   <v-layout column wrap class="grey darken-4 justify-center align-center" style="height: 100%">
-    <v-card class="ma-2 mt-9" min-width="500px">
+    <v-card class="ma-2 mt-9" min-width="300px" width="500px">
       <v-card-title class="secondary white--text floating-title">Redeem Code</v-card-title>
       <v-card-text>
         <v-text-field  v-model="voucher" label="Enter Voucher Code"/>
