@@ -9,7 +9,7 @@
           <h2>About Us</h2>
 
 
-          <h5>Last Updated: April 19, 2020</h5>
+          <h5>Last Updated: March 19, 2021</h5>
           <hr>
           <div class="col">
             <div class="col">
