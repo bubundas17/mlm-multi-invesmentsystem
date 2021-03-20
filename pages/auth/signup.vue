@@ -66,7 +66,7 @@
                     <template v-slot:activator="{ on }">
                       <a
                         target="_blank"
-                        href="/terms"
+                        href="/privacy"
                         @click.stop
                         v-on="on"
                       >
