@@ -7,12 +7,7 @@
           <v-spacer></v-spacer>
           <v-btn @click="settings.popup.enabled = false" color="secondary" icon><v-icon>mdi-close</v-icon></v-btn>
         </v-card-actions>
-        <v-card-text>
-          <span>
-            <pre class="display-2">{{ settings.popup.text }}</pre>
-
-          </span>
-        </v-card-text>
+        <v-card-text class="text-center title" v-html="settings.popup.text"></v-card-text>
       </v-card>
     </v-dialog>
 

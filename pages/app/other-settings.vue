@@ -5,7 +5,7 @@
         <v-card-title>Popup Settings</v-card-title>
         <v-card-text>
           <v-checkbox label="Enable Dashboard Popup"  v-model="settings.popup.enabled"></v-checkbox>
-          <v-textarea placeholder="Popup Text" v-model="settings.popup.text">
+          <v-textarea label="Popup Text (HTML Supported)" v-model="settings.popup.text">
 
           </v-textarea>
         </v-card-text>
