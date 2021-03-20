@@ -44,6 +44,40 @@
             <v-text-field placeholder="Confirm Password" prepend-icon="mdi-form-textbox-password" name="password"
                           type="password" v-model="passwordc" :rules="passcRules"/>
             <v-text-field placeholder="Referral Code (Optional)" prepend-icon="mdi-at" name="Referral Code" v-model="refer" :disabled="referDisabled"/>
+            <v-checkbox label="I agree to all Trams and conditions and Privacy Policy" :rules="tosRules">
+              <template v-slot:label>
+                <div>
+                  I agree to all
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <a
+                        target="_blank"
+                        href="/terms"
+                        @click.stop
+                        v-on="on"
+                      >
+                        Trams And Conditions
+                      </a>
+                    </template>
+                    Opens in new window
+                  </v-tooltip>
+                  and
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <a
+                        target="_blank"
+                        href="/terms"
+                        @click.stop
+                        v-on="on"
+                      >
+                        Privacy Policy
+                      </a>
+                    </template>
+                    Opens in new window
+                  </v-tooltip>
+                </div>
+              </template>
+            </v-checkbox>
           </v-card-text>
           <v-card-actions>
             <v-spacer/>
@@ -131,6 +165,9 @@
         emailRules: [
           v => !!v || 'E-mail is required',
           v => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'E-mail must be valid'
+        ],
+        tosRules: [
+          v => !!v || 'Please accept TOS',
         ],
         passcRules: [
           v => !!v || "Please Enter Confirm Password",
