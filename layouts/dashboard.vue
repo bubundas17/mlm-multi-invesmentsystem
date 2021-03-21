@@ -214,7 +214,7 @@ export default {
         },
         {
           action: 'mdi-party-popper',
-          title: 'Bonus',
+          title: 'Working Project',
           nested: false,
           to: "/app/bonus"
         },
