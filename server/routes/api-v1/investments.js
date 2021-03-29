@@ -106,7 +106,7 @@ router.post("/buy", authenticated, async (req, res) => {
       startDay.setHours(0, 0, 0, 0);
       stopDay.setHours(0, 0, 0, 0);
 
-      startDay.setDate(startDay.getDate() + 2);
+      startDay.setDate(startDay.getDate() + 3);
       stopDay.setDate(stopDay.getDate() + 44);
 
       await InvesmentDB.create({
@@ -202,7 +202,7 @@ router.post("/redeem", async (req, res) => {
     startDay.setHours(0, 0, 0, 0);
     stopDay.setHours(0, 0, 0, 0);
 
-    startDay.setDate(startDay.getDate() + 2);
+    startDay.setDate(startDay.getDate() + 3);
     stopDay.setDate(stopDay.getDate() + 44);
 
     await InvesmentDB.create({
