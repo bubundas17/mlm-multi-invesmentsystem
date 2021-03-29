@@ -10,12 +10,12 @@ f.emptyArray = (length = 1, value = false) => {
   return Array.from(arr, x => value)
 }
 
-f.daysBetween = function (date1, date2, date3) {
+f.daysBetween = function (date1, date2) {
   // The number of milliseconds in one day
   const ONE_DAY = 1000 * 60 * 60 * 24;
 
   // Calculate the difference in milliseconds
-  const differenceMs = Math.abs(date1.getTime() - date2.getTime() - date3.getTime());
+  const differenceMs = Math.abs(date1.getTime() - date2.getTime());
 
   // Convert back to days and return
   return Math.round(differenceMs / ONE_DAY);
