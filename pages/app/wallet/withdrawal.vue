@@ -148,7 +148,6 @@ export default {
   methods: {
     async submit() {
       let description = ""
-
       if (this.paymentMode === "UPI") {
         if (!this.$refs.upi.validate()) return;
         description = `UPI ID: ${this.upiID}\nNOTE: ${this.note}`
@@ -156,6 +155,9 @@ export default {
         if (!this.$refs.neft.validate()) return;
         description = `Name: ${this.payeeName}\nA/C NO: ${this.accountNumber}\nIFSC CODE: ${this.ifscCode} \nNOTE: ${this.note} \n`
       }
+
+      if (!this.user.kycVerified) return this.showAlert("error", "Please complete KYC to Withdrawal")
+
       try {
         await this.$axios.post("/withdrawal", {
           amount: this.amount,

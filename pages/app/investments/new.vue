@@ -1,6 +1,6 @@
 <template>
   <v-layout column style="height: 100%" class="grey darken-4 justify-center align-center">
-    <v-card class="ma-2 mt-12"  min-width="300px" width="500px">
+    <v-card class="ma-2 mt-12" min-width="300px" width="500px">
       <v-card-title class="secondary white--text floating-title">
         New Give Help Plan
       </v-card-title>
@@ -14,6 +14,22 @@
             </v-btn>
           </template>
         </v-text-field>
+      </v-card-text>
+    </v-card>
+    <v-card class="ma-2 mt-12" min-width="300px" width="500px">
+      <v-card-title class="secondary white--text">
+        Other Payment Info
+      </v-card-title>
+      <v-card-text>
+        <h3 class="sub-title mt-3">Bank Account Info</h3>
+        Bank: Union Bank <br>
+        A/C NO: 373601010055001 <br>
+        IFSX: UBIN0537365
+
+        <h3 class="sub-title mt-3 mb-3">PayTM</h3>
+        <v-img src="/images/paytm-qr.jpeg"></v-img>
+        <h3 class="sub-title mt-3 mb-3">GPay QR</h3>
+        <v-img src="/images/upi-qr.jpeg"></v-img>
       </v-card-text>
     </v-card>
   </v-layout>
@@ -71,7 +87,7 @@ export default {
       if (!this.user.isActive) return this.showAlert("error", "Complete your KYC First.")
       if (this.amount < this.min) return this.showAlert("error", "Minimum Amount is 200 INR")
       if (this.amount > this.max) return this.showAlert("error", "Maximum Amount is 5000 INR")
-      if(!this.canInvest) return this.showAlert("error", "You cannot Invest More Right Now.")
+      if (!this.canInvest) return this.showAlert("error", "You cannot Invest More Right Now.")
       var options = {
         key: "rzp_test_KJcjoHIWEsmVBD",
         amount: this.rPayAmount,
