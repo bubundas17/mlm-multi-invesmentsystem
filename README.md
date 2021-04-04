@@ -2,13 +2,6 @@
 
 > MLM Plan
 
-$ sudo su - bubun
-
-$ cd mlm-multi-invesmentsystem
-
-$ git pull
-
-
 ## Build Setup
 
 ### ENV SETUP
@@ -45,6 +38,8 @@ source ~/.bashrc
 
 yarn --version
 
+sudo npm install pm2@latest -g
+
 ############### GitClone
 
 git clone https://github.com/bubundas17/mlm-multi-invesmentsystem.git
@@ -53,26 +48,85 @@ cd mlm-multi-invesmentsystem
 
 yarn install
 
+############## Pm2 
+
+pm2 startup systemd
+
+sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u bubun --hp /home/bubun
+
+pm2 save
+
+pm2 start ecosystem.config.js --env production
+
+pm2 save
+
+############ Nginx Reverse Proxy Setup
+
+sudo apt install nginx
+
+sudo ufw app list
+
+sudo ufw allow 'Nginx HTTP'
+
+sudo ufw status
+
+systemctl status nginx
+
+curl -4 icanhazip.com
+
+sudo systemctl enable nginx
+
+sudo nano /etc/nginx/sites-available/default
+
+`````
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                proxy_pass http://localhost:3000;
+        }
+
+}
+`````
+
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+
+########## RESTORE MongoDb
+
+
+sudo mongorestore --gzip --archive=04-04-21.gz
+
+
+########### 
+
+authorized_keys for auto backup
+
+server/config-editable.json for leatest config
 
 
 
+-----------------------------------------------------------------------------
 
+FOR EDIT AND RE-UPLOAD
 
+-----------------------------------------------------------------------------
+$ sudo su - bubun
 
+$ cd mlm-multi-invesmentsystem
 
+$ git pull
 
+$ yarn build
 
-
-
-
-
-
-
-
-
-
-
-
+$ pm2 restart all
 ______________________________________________________________________________________
 
 OLD DOC By Bubun 
@@ -99,8 +153,9 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# After Restart
+# After Restart  Of VPS
 
 sudo service mongod start
+
 pm2 restart all
 
