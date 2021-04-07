@@ -67,7 +67,11 @@ router.post("/:id/spin", authenticated, async (req, res) => {
 
 router.get("/new", authenticated, async (req, res) => {
   try {
-    if (req.user.maxRefBonus - 100 <= req.user.totalRefBonus) {
+    // console.log(req.user)
+    // console.log(req.user)
+    let user =  await UserDB.findById(req.user._id)
+    if (user.maxRefBonus - 100 <= user.totalRefBonus) {
+      // console.log("here")
       return res.send({
         canInvest: true
       })
@@ -101,27 +105,46 @@ router.post("/buy", authenticated, async (req, res) => {
     let paymentres = await rPay.payments.capture(payment.razorpay_payment_id, amount, "INR")
     if (paymentres.status === "captured") {
 
-      let startDay = new Date();
-      let stopDay = new Date();
-      startDay.setHours(0, 0, 0, 0);
-      stopDay.setHours(0, 0, 0, 0);
+      let active =  await InvesmentDB.findOne({user: req.user._id, status: config.consts.PACKAGE_STATUS_ACTIVE})
 
-      startDay.setDate(startDay.getDate() + 3);
-      stopDay.setDate(stopDay.getDate() + 44);
+      if(!active) {
+        let startDay = new Date();
+        let stopDay = new Date();
+        startDay.setHours(0, 0, 0, 0);
+        stopDay.setHours(0, 0, 0, 0);
 
-      await InvesmentDB.create({
-        user: req.user._id,
-        amount: paymentres.amount / 100,
-        completedSpins: util.emptyArray(42),
-        spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
-        status: config.consts.PACKAGE_STATUS_ACTIVE,
-        startDate: startDay,
-        endDate: stopDay
-      })
-      await UserDB.findByIdAndUpdate(req.user._id, {
-        $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER},
-        $set: {isActive: true}
-      })
+        startDay.setDate(startDay.getDate() + 3);
+        stopDay.setDate(stopDay.getDate() + 44);
+
+        await InvesmentDB.create({
+          user: req.user._id,
+          amount: paymentres.amount / 100,
+          completedSpins: util.emptyArray(42),
+          spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
+          status: config.consts.PACKAGE_STATUS_ACTIVE,
+          startDate: startDay,
+          endDate: stopDay
+        })
+        await UserDB.findByIdAndUpdate(req.user._id, {
+          $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER},
+          $set: {isActive: true}
+        })
+
+      } else  {
+        await Invoice.create({
+          user: req.user._id,
+          title: "Refund for non investment plan credit",
+          description: `Refund for non investment plan credit`,
+          txnType: config.consts.INVOICE_TYPE_CREDIT,
+          finalAmount: paymentres.amount / 100
+        })
+        await UserDB.findByIdAndUpdate(req.user._id, {
+          $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: paymentres.amount / 100},
+          $set: {isActive: true}
+        })
+      }
+
+
 
       let CurrentUser = await UserDB.findById(req.user._id).populate("uptree");
       for (let index in CurrentUser.uptree) {
@@ -196,28 +219,43 @@ router.post("/redeem", async (req, res) => {
     //   completedSpins: util.emptyArray(140)
     // })
 
+    let active =  await InvesmentDB.findOne({user: req.user._id, status: config.consts.PACKAGE_STATUS_ACTIVE})
 
-    let startDay = new Date();
-    let stopDay = new Date();
-    startDay.setHours(0, 0, 0, 0);
-    stopDay.setHours(0, 0, 0, 0);
+    if(!active) {
+      let startDay = new Date();
+      let stopDay = new Date();
+      startDay.setHours(0, 0, 0, 0);
+      stopDay.setHours(0, 0, 0, 0);
 
-    startDay.setDate(startDay.getDate() + 3);
-    stopDay.setDate(stopDay.getDate() + 44);
+      startDay.setDate(startDay.getDate() + 3);
+      stopDay.setDate(stopDay.getDate() + 44);
 
-    await InvesmentDB.create({
-      user: req.user._id,
-      amount: voucherdata.amount,
-      completedSpins: util.emptyArray(42),
-      spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
-      status: config.consts.PACKAGE_STATUS_ACTIVE,
-      startDate: startDay,
-      endDate: stopDay
-    })
-    await UserDB.findByIdAndUpdate(req.user._id, {
-      $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER},
-      $set: {isActive: true}
-    })
+      await InvesmentDB.create({
+        user: req.user._id,
+        amount: voucherdata.amount,
+        completedSpins: util.emptyArray(42),
+        spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
+        status: config.consts.PACKAGE_STATUS_ACTIVE,
+        startDate: startDay,
+        endDate: stopDay
+      })
+      await UserDB.findByIdAndUpdate(req.user._id, {
+        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER},
+        $set: {isActive: true}
+      })
+    } else {
+      await Invoice.create({
+        user: req.user._id,
+        title: "Refund for non investment plan credit",
+        description: `Refund for non investment plan credit`,
+        txnType: config.consts.INVOICE_TYPE_CREDIT,
+        finalAmount: voucherdata.amount
+      })
+      await UserDB.findByIdAndUpdate(req.user._id, {
+        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: voucherdata.amount},
+        $set: {isActive: true}
+      })
+    }
 
     let CurrentUser = await UserDB.findById(req.user._id).populate("uptree");
     for (let index in CurrentUser.uptree) {

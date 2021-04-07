@@ -128,7 +128,7 @@ router.post("/:id/failed", async (req, res) => {
         txnType: config.consts.INVOICE_TYPE_CREDIT,
         finalAmount: wreq.amount
       })
-      await UserDB.findByIdAndUpdate(wreq.user, {$inc: {balance: wreq.amount}})
+      await UserDB.findByIdAndUpdate(wreq.user, {$inc: {balance: parseInt(wreq.amount)}})
     }
 
     res.send({message: "Success"})

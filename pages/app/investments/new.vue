@@ -71,6 +71,7 @@ export default {
         await this.$axios.$post("/investments/buy", {payment, amount: this.rPayAmount})
         this.showAlert("success", "Investment Success!")
         this.$router.push("/app/investments")
+        this.$store.dispatch("refreshUser")
       } catch (e) {
         this.showAlert("error", "Payment Failed.")
       }
