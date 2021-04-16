@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       min: 200,
-
+      max: 2000,
       items: [
         "UPI",
         "NEFT",
@@ -138,6 +138,7 @@ export default {
       amountRules: [
         v => !!v || 'Amount Is Required',
         v => v >= this.min || 'Minimum Withdrawal 200 INR',
+        v => v <= this.max || 'Maximum Withdrawal 2000 INR',
         v => v <= this.user.balance || 'Not Enough Balance',
       ],
 
