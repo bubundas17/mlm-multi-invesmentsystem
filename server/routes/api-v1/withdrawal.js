@@ -22,7 +22,12 @@ router.get("/", authenticated, async (req, res) => {
 router.post("/", authenticated, async (req, res) => {
   let description = req.body.description;
   let amount = req.body.amount;
+
   // console.log(req.body)
+
+  let oldreq = await WithdrawalDB.findOne({user: req.user._id, status: config.consts.WITHDRAWAL_STATUS_PROCESSING})
+  if(oldreq) return  res.status(400).send({message: "Pending withdrawal Request found."})
+
   try {
     let user = await UserDB.findById(req.user._id);
     // Got The User
@@ -42,6 +47,8 @@ router.post("/", authenticated, async (req, res) => {
       })
       await UserDB.findByIdAndUpdate(req.user._id, {$inc: {balance: -amount}})
       res.send({message: "Success!"})
+    }  else {
+      res.status(400).send({message: "Not enough balance."})
     }
   } catch (e) {
     console.log(e);
