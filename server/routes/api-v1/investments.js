@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get("/", authenticated, async (req, res) => {
   try {
-    let investments = await InvesmentDB.find({user: req.user._id}).lean()
+    let investments = await InvesmentDB.find({user: req.user._id, status: config.consts.PACKAGE_STATUS_ACTIVE}).lean()
     investments = investments.map(rec => {
       return {
         spinAvailable: util.isSpinAvailable(rec),

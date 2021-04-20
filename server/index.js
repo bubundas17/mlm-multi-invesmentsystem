@@ -23,7 +23,7 @@ mongoose.connect(config.db.uri, { useNewUrlParser: true }).then(conn => {
   console.log(err)
 });
 
-// require("./tasks/restockCloudlinux");
+require("./tasks/auto-expire-spinns");
 // require("./tasks/renewals");
 // require("./tasks/restockImunify360");
 
