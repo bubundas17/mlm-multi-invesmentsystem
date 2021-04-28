@@ -18,10 +18,10 @@ function generate(numbers = [5,2,1,0.4,0,5, 1.2, 3, 0.8, 1.5], steps = 48, total
   let numbersmem = [];
 
   let tries = 0;
-
+  let rnumbers = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,2,3,4,5,6,7,8]
   while(true) {
     tries ++;
-    const randomElement = numbers[Math.floor(Math.random() * numbers.length)];
+    const randomElement = numbers[rnumbers[Math.floor(Math.random() * rnumbers.length)]];
     if(numbersmem.length >= steps) {
       numbersmem.shift();
     }

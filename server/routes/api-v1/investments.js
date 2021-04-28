@@ -114,13 +114,13 @@ router.post("/buy", authenticated, async (req, res) => {
         stopDay.setHours(0, 0, 0, 0);
 
         startDay.setDate(startDay.getDate() + 3);
-        stopDay.setDate(stopDay.getDate() + 44);
+        stopDay.setDate(stopDay.getDate() + 74);
 
         await InvesmentDB.create({
           user: req.user._id,
           amount: paymentres.amount / 100,
-          completedSpins: util.emptyArray(42),
-          spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
+          completedSpins: util.emptyArray(74),
+          spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
           status: config.consts.PACKAGE_STATUS_ACTIVE,
           startDate: startDay,
           endDate: stopDay
@@ -228,13 +228,13 @@ router.post("/redeem", async (req, res) => {
       stopDay.setHours(0, 0, 0, 0);
 
       startDay.setDate(startDay.getDate() + 3);
-      stopDay.setDate(stopDay.getDate() + 44);
+      stopDay.setDate(stopDay.getDate() + 74);
 
       await InvesmentDB.create({
         user: req.user._id,
         amount: voucherdata.amount,
-        completedSpins: util.emptyArray(42),
-        spins: numberListGenerator(config.WEEL_NUMBERS, 42, config.TOTAL_WHEEL_SUM || 140),
+        completedSpins: util.emptyArray(74),
+        spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
         status: config.consts.PACKAGE_STATUS_ACTIVE,
         startDate: startDay,
         endDate: stopDay
