@@ -52,6 +52,15 @@
           text
           rounded
           class="my-2"
+          to="/"
+        >
+          Home
+        </v-btn>
+        <v-btn
+          color="white"
+          text
+          rounded
+          class="my-2"
           to="/auth/login"
         >
           Login
