@@ -57,7 +57,7 @@ router.post("/submit-kyc", authenticated, multer().array("image", 2), async func
 
 router.get("/:id", authenticated, admin, async (req, res) => {
   let kycId = req.params.id;
-  let kyc = await Kyc.findById(kycId).populate("user", "name username email phone");
+  let kyc = await Kyc.findById(kycId).populate("user", "name username email phone aadhaar");
   res.send({kyc})
 });
 

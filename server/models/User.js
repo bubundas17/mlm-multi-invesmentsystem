@@ -1,10 +1,11 @@
 let mongoose = require('mongoose');
 let config = require("../config");
 let Schema = mongoose.Schema({
-  username: {type: String, unique: true, index: 1},
+  username: {type: String, unique: true, index: 1, required: true},
   email: {type: String, index: 1},
   name: {type: String},
-  phone: {type: Number},
+  phone: {type: Number, unique: true, required: true},
+  aadhaar: {type: Number, unique: true},
   state: {type: String},
   dob: {type: Date, default: Date.now()},
   password: {type: String, required: true},

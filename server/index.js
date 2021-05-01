@@ -10,6 +10,8 @@ const MongoStore = require('connect-mongo')(session);
 const Nuxtconfig = require('../nuxt.config.js');
 const config = require("./config");
 Nuxtconfig.dev = process.env.NODE_ENV !== 'production';
+const  InvDB = require("./models/Investments");
+
 
 app.set('trust proxy');
 
@@ -48,6 +50,13 @@ app.use(require("./routes"));
 
 
 async function start () {
+  // let rec = await InvDB.find()
+  // let count = 0;
+  // for (let re of rec ){
+  //   count += re.amount;
+  //   // console.log(re.amount)
+  // }
+  // console.log(count)
   // Init Nuxt.js
   const nuxt = new Nuxt(Nuxtconfig);
 

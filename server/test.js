@@ -1,6 +1,3 @@
-let lib = require("./lib/util");
-
-// console.log(!lib.isSunday(new Date()))
-(async () => {
-  await lib.sendSMS("7001533982", "Test SMS FROM API")
-})()
+let lib = require("./lib/numberListGenerator");
+let config = require("./config")
+console.log(lib(config.WEEL_NUMBERS, 74, 140))

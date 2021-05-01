@@ -118,7 +118,7 @@ router.post("/buy", authenticated, async (req, res) => {
 
         await InvesmentDB.create({
           user: req.user._id,
-          amount: paymentres.amount / 100,
+          amount: paymentres.amount / 120,
           completedSpins: util.emptyArray(74),
           spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
           status: config.consts.PACKAGE_STATUS_ACTIVE,
@@ -136,7 +136,7 @@ router.post("/buy", authenticated, async (req, res) => {
           title: "Refund for non investment plan credit",
           description: `Refund for non investment plan credit`,
           txnType: config.consts.INVOICE_TYPE_CREDIT,
-          finalAmount: paymentres.amount / 100
+          finalAmount: paymentres.amount / 120
         })
         await UserDB.findByIdAndUpdate(req.user._id, {
           $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: paymentres.amount / 100},
@@ -232,7 +232,7 @@ router.post("/redeem", async (req, res) => {
 
       await InvesmentDB.create({
         user: req.user._id,
-        amount: voucherdata.amount,
+        amount: voucherdata.amount / 0.80,
         completedSpins: util.emptyArray(74),
         spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
         status: config.consts.PACKAGE_STATUS_ACTIVE,
@@ -249,10 +249,10 @@ router.post("/redeem", async (req, res) => {
         title: "Refund for non investment plan credit",
         description: `Refund for non investment plan credit`,
         txnType: config.consts.INVOICE_TYPE_CREDIT,
-        finalAmount: voucherdata.amount
+        finalAmount: voucherdata.amount / 0.80
       })
       await UserDB.findByIdAndUpdate(req.user._id, {
-        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: voucherdata.amount},
+        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: voucherdata.amount/0.80},
         $set: {isActive: true}
       })
     }

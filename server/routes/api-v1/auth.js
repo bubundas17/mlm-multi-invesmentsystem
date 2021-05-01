@@ -14,7 +14,7 @@ const Otp = require("../../models/Otp")
 
 
 router.post("/signup", async (req, res) => {
-  let {username, email, name, password, phone, refer, state, dob} = req.body;
+  let {username, email, name, password, phone, refer, state, dob, aadhaar} = req.body;
   if (!username) return res.status(400).json({message: "Please Enter Username"});
   if (!email && !validator.isEmail(email)) return res.status(400).json({message: "Please Enter A Valid Email"});
   if (!name) return res.status(400).json({message: "Please Enter Name"});
@@ -22,6 +22,11 @@ router.post("/signup", async (req, res) => {
   if (!phone) return res.status(400).json({message: "Please Enter Phone Number"});
   if (!state) return res.status(400).json({message: "Please Enter State"});
   if (!dob) return res.status(400).json({message: "Please Enter Dob"});
+  if (!aadhaar) return res.status(400).json({message: "Please Enter Aadhaar Number"});
+  if(await User.findOne({phone: phone})) return res.status(400).json({message: "Mobile Number Already Registered"});
+  if(await User.findOne({aadhaar: aadhaar})) return res.status(400).json({message: "Aadhaar Number Already Registered"});
+  if(await User.findOne({username: username})) return res.status(400).json({message: "Username Already Taken"});
+
 
   let referUser = null;
 
@@ -41,7 +46,7 @@ router.post("/signup", async (req, res) => {
     }
 
     let userData = await User.create({
-      username, name, email, password: hashedpass, phone, state, dob, referredBy: referUser, uptree
+      username, name, email, password: hashedpass, phone, state, dob, aadhaar, referredBy: referUser, uptree
     });
 
     let token = jwt.sign({
