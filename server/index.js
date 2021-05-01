@@ -11,7 +11,7 @@ const Nuxtconfig = require('../nuxt.config.js');
 const config = require("./config");
 Nuxtconfig.dev = process.env.NODE_ENV !== 'production';
 const  InvDB = require("./models/Investments");
-
+const formidableMiddleware = require('express-formidable');
 
 app.set('trust proxy');
 
@@ -36,7 +36,22 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection, stringify: false }),
   // cookie: {secure: true}
 }));
-
+// app.use(function(req, res, next) {
+//   req.rawBody = '';
+//   req.setEncoding('utf8');
+//
+//
+//   req.on('data', function(chunk) {
+//     req.rawBody += chunk;
+//   });
+//
+//   req.on('end', function() {
+//     console.log(req.rawBody)
+//     next();
+//   });
+// });
+// app.use(formidableMiddleware());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.enable("trust proxy");
 app.use(require("./routes"));

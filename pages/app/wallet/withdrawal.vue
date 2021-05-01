@@ -26,8 +26,8 @@
 
             <v-textarea
               v-model="note"
-              label="Note for admin"
-              hint="Enter note for the admin to see while processing your request."
+              :rules="noteRules"
+              label="Reason For Withdrawal"
             ></v-textarea>
             <v-text-field
               label="Enter Amount To Withdrawal"
@@ -65,10 +65,11 @@
               :rules="ifscRules"
               label="IFSC Code"
             ></v-text-field>
+
             <v-textarea
               v-model="note"
-              label="Note for admin"
-              hint="Enter note for the admin to see while processing your request."
+              :rules="noteRules"
+              label="Reason For Withdrawal"
             ></v-textarea>
             <v-text-field
               label="Enter Amount To Withdrawal"
@@ -106,6 +107,7 @@ export default {
   layout: "dashboard",
   data() {
     return {
+      lt:null,
       min: 200,
       max: 2000,
       items: [
@@ -141,6 +143,9 @@ export default {
         v => v <= this.max || 'Maximum Withdrawal 2000 INR',
         v => v <= this.user.balance || 'Not Enough Balance',
       ],
+      noteRules: [
+        v => !!v || 'Withdrawal Reason Required',
+      ],
 
       paymentMode: "UPI",
       amount: 200
@@ -148,6 +153,7 @@ export default {
   },
   methods: {
     async submit() {
+      this.saveAll()
       let description = ""
       if (this.paymentMode === "UPI") {
         if (!this.$refs.upi.validate()) return;
@@ -171,9 +177,23 @@ export default {
         console.log(e);
       }
 
+    },
+    saveAll(){
+      if(process.client){
+        this.lt.setItem("payment", JSON.stringify({
+          upiID: this.upiID,
+          accountNumber: this.accountNumber,
+          confirmAccountNumber: this.confirmAccountNumber,
+          ifscCode: this.ifscCode,
+          confirmIfscCode: this.confirmIfscCode,
+          payeeName: this.payeeName,
+          paymentMode: this.paymentMode,
+        }));
+      }
     }
   },
   watch: {
+
     paymentMode(val) {
       try {
         this.$refs.upi.resetValidation();
@@ -187,6 +207,21 @@ export default {
       } catch (e) {
 
       }
+    }
+  },
+  mounted() {
+    if(process.client){
+      this.lt =window.localStorage;
+      let data = this.lt.getItem('payment');
+      if(!data) return
+      data = JSON.parse(data)
+      if(data.upiID) this.upiID = data.upiID
+      if(data.accountNumber) this.accountNumber = data.accountNumber
+      if(data.confirmAccountNumber) this.confirmAccountNumber = data.confirmAccountNumber
+      if(data.ifscCode) this.ifscCode = data.ifscCode
+      if(data.confirmIfscCode) this.confirmIfscCode = data.confirmIfscCode
+      if(data.payeeName) this.payeeName = data.payeeName
+      if(data.paymentMode) this.paymentMode = data.paymentMode
     }
   }
 }

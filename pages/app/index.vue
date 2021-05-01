@@ -5,7 +5,9 @@
       <v-card>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="settings.popup.enabled = false" color="secondary" icon><v-icon>mdi-close</v-icon></v-btn>
+          <v-btn @click="settings.popup.enabled = false" color="secondary" icon>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-actions>
         <v-card-text class="text-center title" v-html="settings.popup.text"></v-card-text>
       </v-card>
@@ -31,6 +33,36 @@
           </v-col>
         </v-row>
       </v-alert>
+    </v-flex>
+
+
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2">
+        <v-card-title>Resent Investments</v-card-title>
+        <v-list dense style="max-height: 150px; overflow: auto">
+          <v-list-item v-for="item in index.investments" :key="item._id">
+            <v-list-item-content>
+              <v-list-item-title>{{ item.user.name }}</v-list-item-title>
+              <v-list-item-subtitle>{{ item.created | fromNow}}</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action>₹{{ item.amount }}</v-list-item-action>
+          </v-list-item>
+        </v-list>
+      </v-card>
+    </v-flex>
+
+    <v-flex xs12 sm12 md6>
+      <v-card class="ma-2">
+        <v-card-title>Resent Withdrawals</v-card-title>
+        <v-list dense style="max-height: 150px; overflow: auto">
+          <v-list-item v-for="item in index.withdrawal" :key="item._id">
+            <v-list-item-content>
+              <v-list-item-title>{{ item.user.name }}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>₹{{ item.amount }}</v-list-item-action>
+          </v-list-item>
+        </v-list>
+      </v-card>
     </v-flex>
 
     <v-flex xs12 sm12 md6>
@@ -95,7 +127,7 @@
       </v-card>
     </v-flex>
 
-    <v-flex xs12 >
+    <v-flex xs12>
       <v-card class="ma-2 red profile-bgma">
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
           <div class="display-1 white--text text-left px-6">
@@ -147,11 +179,13 @@ export default {
   layout: "dashboard",
   async asyncData({app}) {
     let ref = await app.$axios.$get("/refer");
+    let index = await app.$axios.$get("/");
     let settings = await app.$axios.$get("/settings/other")
 
     return {
       ref,
-      settings
+      settings,
+      index
     }
   },
   data() {
@@ -217,37 +251,37 @@ export default {
   background-image: url("/images/username-bg.jpg");
 }
 
-.profile-bgma{
+.profile-bgma {
   background-size: cover;
   background-image: url("/images/manr.jpg");
 }
 
-.wallet-bg{
+.wallet-bg {
   background-size: cover;
   background-image: url("/images/wallet.jpg");
 }
 
-.wallet-bgg{
+.wallet-bgg {
   background-size: cover;
   background-image: url("/images/tre.jpg");
 }
 
-.wallet-bggg{
+.wallet-bggg {
   background-size: cover;
   background-image: url("/images/ref.jpg");
 }
 
-.wallet-bgggg{
+.wallet-bgggg {
   background-size: cover;
   background-image: url("/images/refer112.jpg");
 }
 
-.walle-bgggg{
+.walle-bgggg {
   background-size: cover;
   background-image: url("/images/acr.jpg");
 }
 
-.walle-bggggg{
+.walle-bggggg {
   background-size: cover;
   background-image: url("/images/lcr.jpg");
 }

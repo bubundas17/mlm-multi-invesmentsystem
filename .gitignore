@@ -86,6 +86,8 @@ sw.*
 # Mac OSX
 .DS_Store
 
+server/uploads/*.jpg
+
 # Vim swap files
 *.swp
 

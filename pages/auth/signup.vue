@@ -11,6 +11,11 @@
             <v-text-field placeholder="Username" prepend-icon="mdi-account-circle" name="username" v-model="username" :rules="usernameRules"/>
             <v-text-field placeholder="Email ID" prepend-icon="mdi-at" name="email" v-model="email" :rules="emailRules"/>
             <v-text-field placeholder="10 Digit Mobile Number" prepend-icon="mdi-cellphone-android" name="phone" v-model="phone" :rules="PhoneRules"/>
+            <v-text-field placeholder="12 Digit Aadhaar Number" prepend-icon="mdi-card-account-details-outline" name="aadhaar" v-model="aadhaar" :rules="AadhaarRules"/>
+            <no-ssr>
+              <v-file-input accept="image/*" label="Aadhar Card Font page" v-model="file1" counter show-size></v-file-input>
+              <v-file-input accept="image/*" label="Aadhar Card Back page" v-model="file2" counter show-size></v-file-input>
+            </no-ssr>
             <v-select placeholder="State" prepend-icon="mdi-map-marker" name="Select State" type="text"
                           v-model="state" :items="states"/>
             <v-menu
@@ -107,8 +112,11 @@
         datePicker: false,
         name: "",
         username: "",
+        aadhaar: "",
         email: "",
         password: "",
+        file1: null,
+        file2: null,
         phone: "",
         refer: "",
         referDisabled: false,
@@ -162,6 +170,11 @@
           v => (v && v.length == 10) || 'Mobile must be 10 Correctors Long.',
           v => /^[7-9][0-9]{9}$/.test(v) || "Please enter valid Mobile number"
         ],
+        AadhaarRules: [
+          v => !!v || 'Aadhaar is required',
+          v => (v && v.length == 12) || 'Aadhaar Number must be 12 Correctors Long.',
+          v => /^[0-9]{4}[ -]?[0-9]{4}[ -]?[0-9]{4}$/.test(v) || "Please enter valid Aadhaar number"
+        ],
         emailRules: [
           v => !!v || 'E-mail is required',
           v => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'E-mail must be valid'
@@ -183,15 +196,33 @@
     methods: {
       async signup() {
         if (this.$refs.form.validate()) {
+          if(!this.file1) return this.showAlert("error", "Select Aadhaar Font");
+          if(!this.file2) return this.showAlert("error", "Select Aadhaar Back");
+          let formData = new FormData();
+          // files
+          formData.append("image", this.file1, this.file1);
+          formData.append("image", this.file2, this.file2);
+
+          // Fields
+          formData.append("username", this.username);
+          formData.append("email", this.email);
+          formData.append("name", this.name);
+          formData.append("password", this.password);
+          formData.append("refer", this.refer);
+          formData.append("phone", this.phone);
+          formData.append("state", this.state);
+          formData.append("dob", this.date);
+          formData.append("aadhaar", this.aadhaar);
+
           try {
             this.loading = true;
-            await this.$axios.post("/auth/signup", {username: this.username, email: this.email, name: this.name, password: this.password, refer: this.refer, phone: this.phone, state: this.state, dob: this.date});
+            // await this.$axios.post("/auth/signup", {username: this.username, email: this.email, name: this.name, password: this.password, refer: this.refer, phone: this.phone, state: this.state, dob: this.date, aadhaar: this.aadhaar});
+            await this.$axios.post("/auth/signup", formData);
             this.showAlert("success", "SignUp Done!, Trying To Login...");
             setTimeout(() => {
               this.$store.dispatch("login", {username: this.username, password: this.password})
             }, 1000)
           } catch (e) {
-
             this.showAlert("error", e.response.data.message);
           }
           this.loading = false;

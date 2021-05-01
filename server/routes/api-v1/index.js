@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const LicenseDB = require("../../models/License");
+const Investment = require("../../models/Investments");
+const Withdrawl = require("../../models/Withdrawal");
 const config = require("../../config");
 
 
@@ -32,9 +33,9 @@ router.use("/withdrawal", Withdrawal);
 router.use("/settings", Settings);
 
 router.get('/', authenticated, async (req, res) => {
-  let licenseCount = await LicenseDB.find({user: req.user._id, status: config.consts.LICENSE_STATUS_ACTIVE}).count();
-  // console.log(licenseCount)
-  res.json({licenseCount})
+  let investments = await Investment.find({status: config.consts.PACKAGE_STATUS_ACTIVE}).sort({created: -1}).limit(10).populate("user", "name")
+  let withdrawal = await Withdrawl.find({status: config.consts.WITHDRAWAL_STATUS_COMPLETED}).sort({_id: -1}).limit(10).populate("user", "name")
+  res.send({investments, withdrawal})
 });
 
 

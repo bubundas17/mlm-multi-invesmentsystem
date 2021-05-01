@@ -19,6 +19,9 @@
             <v-list-item>
               Phone: {{ kyc.user.phone }}
             </v-list-item>
+            <v-list-item>
+              Aadhaar Number: {{ kyc.user.aadhaar }}
+            </v-list-item>
           </v-list>
 
           <h2 class="sub-header">Submitted Aadhaar Image</h2>
