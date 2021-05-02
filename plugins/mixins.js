@@ -1,4 +1,5 @@
 import vue from "vue"
+import moment from "moment"
 
 vue.mixin({
   methods: {
@@ -13,6 +14,11 @@ vue.mixin({
       return s.toLowerCase().charCodeAt(0) - 97 + 1;
     },
 
+  },
+  filters: {
+    fromNow(val) {
+      return moment(val).fromNow();
+    }
   },
   computed: {
     zodiac(){

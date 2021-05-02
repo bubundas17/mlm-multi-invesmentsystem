@@ -11,10 +11,24 @@ const ejs = require("ejs");
 const emailSender = require("../../lib/emailSender");
 const util = require("../../lib/util");
 const Otp = require("../../models/Otp")
+const Kyc = require("../../models/Kyc");
+const formidableMiddleware = require('express-formidable');
+const fs = require("fs");
 
+function makeid(length) {
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
-router.post("/signup", async (req, res) => {
-  let {username, email, name, password, phone, refer, state, dob, aadhaar} = req.body;
+router.post("/signup", formidableMiddleware({multiples: true, encoding: 'utf-8'}), async (req, res) => {
+  let {username, email, name, password, phone, refer, state, dob, aadhaar} = req.fields;
+  // console.log(req.fields)
+  // console.log(req.files)
   if (!username) return res.status(400).json({message: "Please Enter Username"});
   if (!email && !validator.isEmail(email)) return res.status(400).json({message: "Please Enter A Valid Email"});
   if (!name) return res.status(400).json({message: "Please Enter Name"});
@@ -23,6 +37,7 @@ router.post("/signup", async (req, res) => {
   if (!state) return res.status(400).json({message: "Please Enter State"});
   if (!dob) return res.status(400).json({message: "Please Enter Dob"});
   if (!aadhaar) return res.status(400).json({message: "Please Enter Aadhaar Number"});
+  if(!req.files.image || !req.files.image || req.files.image.length !==2) return res.status(400).send({message: "Please Select Both Files"});
   if(await User.findOne({phone: phone})) return res.status(400).json({message: "Mobile Number Already Registered"});
   if(await User.findOne({aadhaar: aadhaar})) return res.status(400).json({message: "Aadhaar Number Already Registered"});
   if(await User.findOne({username: username})) return res.status(400).json({message: "Username Already Taken"});
@@ -48,7 +63,17 @@ router.post("/signup", async (req, res) => {
     let userData = await User.create({
       username, name, email, password: hashedpass, phone, state, dob, aadhaar, referredBy: referUser, uptree
     });
+    let filename = makeid(20);
+    // filename += ".jpg";
 
+    await Kyc.create({
+      user: userData._id,
+      filename: filename
+    });
+
+    fs.renameSync(req.files.image[0].path, __dirname + `/../../uploads/${filename}-1.jpg`);
+    fs.renameSync(req.files.image[1].path, __dirname + `/../../uploads/${filename}-2.jpg`);
+    // fs.writeFileSync(__dirname + `/../../uploads/${filename}-2.jpg`, req.files[1].buffer);
     let token = jwt.sign({
         id: userData._id,
         username: userData.username,
