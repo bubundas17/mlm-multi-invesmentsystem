@@ -170,6 +170,17 @@
         </v-responsive>
       </v-card>
     </v-flex>
+    <v-flex xs12>
+      <v-card class="ma-2 teal wallet-bgggg">
+        <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
+          <div class="display-1 white--text text-left px-6">
+            <span class="headline">Global Wallet</span><br>
+            <v-icon color="white" large left class="mt-n1">mdi-wallet</v-icon>
+            {{ index.globalwallet.balance }} INR
+          </div>
+        </v-responsive>
+      </v-card>
+    </v-flex>
   </v-layout>
 </template>
 

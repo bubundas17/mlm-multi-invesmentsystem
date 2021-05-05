@@ -118,7 +118,7 @@ router.post("/buy", authenticated, async (req, res) => {
 
         await InvesmentDB.create({
           user: req.user._id,
-          amount: paymentres.amount / 120,
+          amount: (paymentres.amount / 100) * 0.8,
           completedSpins: util.emptyArray(74),
           spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
           status: config.consts.PACKAGE_STATUS_ACTIVE,
@@ -136,10 +136,11 @@ router.post("/buy", authenticated, async (req, res) => {
           title: "Refund for non investment plan credit",
           description: `Refund for non investment plan credit`,
           txnType: config.consts.INVOICE_TYPE_CREDIT,
-          finalAmount: paymentres.amount / 120
+          finalAmount: (paymentres.amount / 100) * 0.8
         })
+        util.addGlobalWalletBalance(parseInt((paymentres.amount / 100) * 0.1))
         await UserDB.findByIdAndUpdate(req.user._id, {
-          $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: paymentres.amount / 100},
+          $inc: {maxRefBonus: paymentres.amount / 100 * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: (paymentres.amount / 100) * 0.8},
           $set: {isActive: true}
         })
       }
@@ -229,10 +230,11 @@ router.post("/redeem", async (req, res) => {
 
       startDay.setDate(startDay.getDate() + 3);
       stopDay.setDate(stopDay.getDate() + 74);
+      util.addGlobalWalletBalance(parseInt(voucherdata.amount / 0.10))
 
       await InvesmentDB.create({
         user: req.user._id,
-        amount: voucherdata.amount / 0.80,
+        amount: voucherdata.amount * 0.80,
         completedSpins: util.emptyArray(74),
         spins: numberListGenerator(config.WEEL_NUMBERS, 74, config.TOTAL_WHEEL_SUM || 140),
         status: config.consts.PACKAGE_STATUS_ACTIVE,
@@ -249,10 +251,13 @@ router.post("/redeem", async (req, res) => {
         title: "Refund for non investment plan credit",
         description: `Refund for non investment plan credit`,
         txnType: config.consts.INVOICE_TYPE_CREDIT,
-        finalAmount: voucherdata.amount / 0.80
+        finalAmount: voucherdata.amount * 0.80
       })
+
+      util.addGlobalWalletBalance(parseInt(voucherdata.amount * 0.10))
+
       await UserDB.findByIdAndUpdate(req.user._id, {
-        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: voucherdata.amount/0.80},
+        $inc: {maxRefBonus: voucherdata.amount * config.MLM_MAXREFER_EARNING_MULTIPLAYER, balance: voucherdata.amount*0.80},
         $set: {isActive: true}
       })
     }

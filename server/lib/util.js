@@ -2,6 +2,8 @@ let f = {}
 const moment = require('moment');
 const rp = require("request-promise")
 const config = require("../config")
+const fs = require("fs")
+const path = require("path")
 
 // Generates a array with given length with false value
 f.emptyArray = (length = 1, value = false) => {
@@ -35,7 +37,19 @@ f.sendSMS = async function (number, text) {
     }
   })
 }
+f.addGlobalWalletBalance = function (balance){
+  if(balance && (typeof  balance == "number")){
+    console.log("Adding to global wallet: ", balance)
+    let globalwallet = fs.readFileSync(path.join(__dirname, "../global-wallet.json"))
+    globalwallet = JSON.parse(globalwallet.toString());
+    console.log("global Wallet Old Balance", globalwallet.balance)
+    let newBalance = globalwallet.balance + balance
+    console.log("New global Wallet Balance", newBalance)
+    globalwallet.balance += parseInt(balance)
+    fs.writeFileSync(path.join(__dirname, "../global-wallet.json"), JSON.stringify({balance: newBalance}))
+  }
 
+}
 f.randomInt = function(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

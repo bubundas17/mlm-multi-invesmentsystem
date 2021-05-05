@@ -295,6 +295,10 @@ export default {
             action: 'mdi-cog',
             title: 'Settings',
             to: "/app/settings"
+          }, {
+            action: 'mdi-email',
+            title: 'Bulk Notify',
+            to: "/app/bulk-notify"
           },
           {
             action: 'mdi-cog',

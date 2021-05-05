@@ -40,6 +40,7 @@
     "razorpay": "^2.0.6",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
+    "sms-counter": "^1.0.0",
     "uuid": "^3.4.0",
     "v-jsoneditor": "^1.4.2",
     "validator": "^12.1.0",

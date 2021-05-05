@@ -7317,6 +7317,11 @@ sliced@1.0.1:
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
 
+sms-counter@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sms-counter/-/sms-counter-1.0.0.tgz#acfdbff1825b5a22b66bcbc1ade2077432d405c1"
+  integrity sha512-2mFXYuLyktYAT+sX+q/+SlW7hW/SQoxju6wKd4/QS2sRbNY7q8h3s8PZZMyuzYnsgMk54Dnb2NSdN4kfySb1Yw==
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"

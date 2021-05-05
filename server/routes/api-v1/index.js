@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const fs = require('fs');
+const path = require("path")
 const Investment = require("../../models/Investments");
 const Withdrawl = require("../../models/Withdrawal");
 const config = require("../../config");
@@ -17,6 +18,7 @@ const Kyc = require("./kyc");
 const Investments =  require("./investments");
 const Withdrawal =  require("./withdrawal");
 const Settings =  require("./settings");
+const Bulk =  require("./bulk-notify");
 
 const authenticated = require("../../controllers/authenticated");
 
@@ -31,11 +33,14 @@ router.use("/kyc", Kyc);
 router.use("/investments", Investments);
 router.use("/withdrawal", Withdrawal);
 router.use("/settings", Settings);
+router.use("/bulk", Bulk);
 
 router.get('/', authenticated, async (req, res) => {
   let investments = await Investment.find({status: config.consts.PACKAGE_STATUS_ACTIVE}).sort({created: -1}).limit(10).populate("user", "name")
   let withdrawal = await Withdrawl.find({status: config.consts.WITHDRAWAL_STATUS_COMPLETED}).sort({_id: -1}).limit(10).populate("user", "name")
-  res.send({investments, withdrawal})
+  let globalwallet = fs.readFileSync(path.join(__dirname, "../../global-wallet.json"))
+  globalwallet = JSON.parse(globalwallet.toString());
+  res.send({investments, withdrawal, globalwallet})
 });
 
 
