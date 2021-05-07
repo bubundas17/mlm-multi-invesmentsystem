@@ -38,7 +38,7 @@
 
     <v-flex xs12 sm12 md6>
       <v-card class="ma-2">
-        <v-card-title>Resent Investments</v-card-title>
+        <v-card-title>Resent Donates</v-card-title>
         <v-list dense style="max-height: 150px; overflow: auto">
           <v-list-item v-for="item in index.investments" :key="item._id">
             <v-list-item-content>
@@ -53,7 +53,7 @@
 
     <v-flex xs12 sm12 md6>
       <v-card class="ma-2">
-        <v-card-title>Resent Withdrawals</v-card-title>
+        <v-card-title>Resent Helps</v-card-title>
         <v-list dense style="max-height: 150px; overflow: auto">
           <v-list-item v-for="item in index.withdrawal" :key="item._id">
             <v-list-item-content>
