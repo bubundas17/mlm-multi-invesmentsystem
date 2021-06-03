@@ -36,34 +36,7 @@
     </v-flex>
 
 
-    // <v-flex xs12 sm12 md6>
-    //   <v-card class="ma-2">
-    //     <v-card-title>Resent Donates</v-card-title>
-    //     <v-list dense style="max-height: 150px; overflow: auto">
-    //       <v-list-item v-for="item in index.investments" :key="item._id">
-    //         <v-list-item-content>
-    //           <v-list-item-title>{{ item.user.name }}</v-list-item-title>
-    //           <v-list-item-subtitle>{{ item.created | fromNow}}</v-list-item-subtitle>
-    //         </v-list-item-content>
-    //         <v-list-item-action>₹{{ item.amount }}</v-list-item-action>
-    //       </v-list-item>
-    //     </v-list>
-    //   </v-card>
-    // </v-flex>
 
-    // <v-flex xs12 sm12 md6>
-    //   <v-card class="ma-2">
-    //     <v-card-title>Resent Helps</v-card-title>
-    //     <v-list dense style="max-height: 150px; overflow: auto">
-    //       <v-list-item v-for="item in index.withdrawal" :key="item._id">
-    //         <v-list-item-content>
-    //           <v-list-item-title>{{ item.user.name }}</v-list-item-title>
-    //         </v-list-item-content>
-    //         <v-list-item-action>₹{{ item.amount }}</v-list-item-action>
-    //       </v-list-item>
-    //     </v-list>
-    //   </v-card>
-    // </v-flex>
     <v-flex xs12>
       <v-card class="ma-2 teal wallet-bgggg">
         <v-responsive aspect-ratio="8" style="min-height: 100px" class="d-flex justify-center align-center">
