@@ -92,3 +92,7 @@ server/uploads/*.jpg
 *.swp
 
 mongodb
+
+# Config Store Files
+server/global-wallet.json
+server/config-editable.json

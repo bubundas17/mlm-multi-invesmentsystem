@@ -13,12 +13,13 @@
               <v-card-text class="">
                 <v-layout row wrap>
                   <v-spacer/>
-                  <v-chip color="primary mt-n8 mr-n4">{{ inv.status }}</v-chip>
+                  
                 </v-layout>
                 <div class="my-3">
-                  <h2 class="text-center py-3 display-2"><span
+                  <v-chip x-large color="primary mt-1 ml-8 pa-5" style="font-size: 20px; font-weight: 600">{{ inv.status }}</v-chip>
+                  <!-- <h2 class="text-center py-3 display-2"><span
                     style="position: absolute; font-size: 25px; font-weight: 900; top: 21px; margin-left: -11px;">₹</span>
-                    {{ inv.amount }}</h2>
+                    {{ inv.amount }}</h2> -->
                 </div>
                 <span></span>
               </v-card-text>

@@ -20,7 +20,8 @@
     <v-app-bar fixed app dark color="primary">
       <!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up"/>-->
 <!--      <img :src="require('../assets/images/logo.png')" style="max-height: 60%">-->
-      <img src="/icon.png" height="56px"><v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
+      <!-- <img src="/icon.png" height="56px"> -->
+      <v-toolbar-title v-text="title" class="ml-2 hidden-sm-and-down"/>
       <v-spacer/>
       <v-spacer/>
       <v-toolbar-items></v-toolbar-items>
