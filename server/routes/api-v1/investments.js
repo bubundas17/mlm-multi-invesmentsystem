@@ -49,15 +49,20 @@ router.post("/:id/spin", authenticated, async (req, res) => {
 
   let creditAmount = investment.amount * ((percentage) / 100)
   creditAmount = creditAmount.toFixed(2)
+  if(!creditAmount) res.status(500).send({error: 1, message: "Somthing went wrong."})
+  // First Mark Spin as complited.
+  await InvesmentDB.findByIdAndUpdate(req.params.id, {$set: {completedSpins: completedSpins}})
+  // If Balance credit failed, Do not create another record.
+  await UserDB.findByIdAndUpdate(req.user._id, {$inc: {balance: creditAmount}})
+  // If everything ok, Create invoice.
   await Invoice.create({
     user: req.user._id,
     title: "Spin Credit!",
     description: "Spin Credit for " + percentage + "% Score!",
     finalAmount: creditAmount,
+    date: Date.now(),
     txnType: config.consts.INVOICE_TYPE_CREDIT
   })
-  await UserDB.findByIdAndUpdate(req.user._id, {$inc: {balance: creditAmount}})
-  await InvesmentDB.findByIdAndUpdate(req.params.id, {$set: {completedSpins: completedSpins}})
   res.send({
     percentage,
     creditAmount

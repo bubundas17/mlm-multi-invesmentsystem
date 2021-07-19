@@ -27,12 +27,17 @@ router.post("/", authenticated, async (req, res) => {
 
   let oldreq = await WithdrawalDB.findOne({user: req.user._id, status: config.consts.WITHDRAWAL_STATUS_PROCESSING})
   if(oldreq) return  res.status(400).send({message: "Pending withdrawal Request found."})
+  amount = parseInt(amount)
+  if(!amount | amount < 200) return res.status(500).send({error: "Amount must be more than 200"});
 
   try {
     let user = await UserDB.findById(req.user._id);
     // Got The User
+
+    if(!user.balance) res.status(400).send({message: "Not enough balance."})
     if (user.balance >= amount) {
       // User Have Enough Balance
+      await UserDB.findByIdAndUpdate(req.user._id, {$inc: {balance: -amount}})
       await WithdrawalDB.create({
         user: req.user._id,
         amount: amount,
@@ -45,7 +50,6 @@ router.post("/", authenticated, async (req, res) => {
         txnType: config.consts.INVOICE_TYPE_DEBIT,
         finalAmount: amount
       })
-      await UserDB.findByIdAndUpdate(req.user._id, {$inc: {balance: -amount}})
       res.send({message: "Success!"})
     }  else {
       res.status(400).send({message: "Not enough balance."})
@@ -128,6 +132,9 @@ router.post("/:id/failed", async (req, res) => {
 
     await await WithdrawalDB.findByIdAndUpdate(req.params.id, {status: config.consts.WITHDRAWAL_STATUS_FAILED, refunded: true})
     if(!wreq.refunded) {
+
+      if(!parseInt(wreq.amount)) return res.status(500).send({message: "Failed."})
+
       await InvoiceDb.create({
         user: wreq.user,
         title: "Withdrawal failed Refund",
@@ -140,7 +147,7 @@ router.post("/:id/failed", async (req, res) => {
 
     res.send({message: "Success"})
   } catch (e) {
-    res.status(500).send({message: "Success"})
+    
   }
 })
 
